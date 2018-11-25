@@ -20,8 +20,11 @@ mongoose.connect(process.env.MONGO_URI, {
   }
 })
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
 app.use('/api', apiRouter)
 
-app.listen(4000, () => {
-  console.log('App listening on port 4000!');
+app.listen(port, () => {
+  console.log('App listening on port ' + port);
 });

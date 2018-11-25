@@ -1,3 +1,5 @@
+const Book = require('../../models/book')
+
 exports.list = (req, res) => {
   res.send('listed');
 };
