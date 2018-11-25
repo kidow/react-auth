@@ -1,0 +1,20 @@
+.wrapper {
+  & + & {
+    margin-top: 1rem;
+  }
+  .label {
+    font-size: 1rem;
+    color: #848e97;
+    margin-bottom: 0.25rem;
+  }
+  .input {
+    width: 100%;
+    border: 1px solid #dde2e5;
+    outline: none;
+    border-radius: 0px;
+    line-height: 2.5rem;
+    font-size: 1.2rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
