@@ -17,5 +17,8 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     box-sizing: border-box;
+    &::placeholder {
+      color: #dde2e5;
+    }
   }
 }
