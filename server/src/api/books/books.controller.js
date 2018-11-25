@@ -1,4 +1,6 @@
 const Book = require('../../models/book')
+const { Types: { ObjectId }} = require('mongoose')
+const Joi = require('joi')
 
 exports.list = async (req, res) => {
   let books
@@ -62,8 +64,42 @@ exports.delete = async (req, res) => {
   }
 };
 
-exports.replace = (req, res) => {
-  res.send('replaced');
+exports.replace = async (req, res) => {
+  const { id } = req.params
+  if (!ObjectId.isValid(id)) {
+    res.status(400)
+    return
+  }
+  const schema = Joi.object().keys({
+    title: Joi.string().required(),
+    authors: Joi.array().items(Joi.object().keys({
+      name: Joi.string().required(),
+      email: Joi.string().email().required()
+    })),
+    publishedDate: Joi.date().required(),
+    price: Joi.number().required(),
+    tags: Joi.array().items((Joi.string()).required())
+  })
+  const result = Joi.validate(req.body, schema)
+
+  if (result.error) {
+    res.status(400)
+    res.json(result.error)
+    return
+  }
+
+  let book
+
+  try {
+    book = await Book.findByIdAndUpdate(id, req.body, {
+      upsert: true,
+      new: true
+    })
+    res.json(book)
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
 };
 
 exports.update = (req, res) => {
