@@ -4,10 +4,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "NODE_PATH=src nodemon src"
+    "start": "nodemon src"
   },
   "dependencies": {
     "bcrypt": "^3.0.2",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
     "joi": "^14.1.1",
