@@ -14,6 +14,10 @@ class Register extends Component {
     AuthActions.changeInput({ name, value, form: 'register' })
   }
 
+  componentWillUnmount() {
+    const { AuthActions } = this.props;
+    AuthActions.initializeForm('register')
+  }
   render() {
     const { email, username, password, passwordConfirm } = this.props.form.toJS()
     const { handleChange } = this

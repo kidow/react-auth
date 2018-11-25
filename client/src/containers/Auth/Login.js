@@ -13,6 +13,11 @@ class Login extends Component {
     const { name, value } = e.target
     AuthActions.changeInput({name, value, form: 'login'})
   }
+
+  componentWillUnmount() {
+    const { AuthActions } = this.props;
+    AuthActions.initializeForm('login')
+  }
   render() {
     const { email, password } = this.props.form.toJS()
     const { handleChange } = this
