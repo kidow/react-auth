@@ -71,7 +71,15 @@ exports.localLogin = async (req, res) => {
 };
 
 exports.exists = async (req, res) => {
-  res.send('exists');
+  const { key, value } = req.params
+  let account = null
+  try {
+    account = await (key === 'email' ? Account.findByEmail(value) : Account.findByUsername(value))
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
+  res.json({ exists: account !== null })
 };
 
 exports.logout = async (req, res) => {
