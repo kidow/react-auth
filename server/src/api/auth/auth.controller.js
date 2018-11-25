@@ -102,5 +102,6 @@ exports.exists = async (req, res) => {
 };
 
 exports.logout = async (req, res) => {
-  res.send('logout');
+  res.cookie('access_token', null, { maxAge: 0, httpOnly: true })
+  res.status(204)
 };
