@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const crypto = require('crypto');
+const { generateToken } = require('../lib/token')
 const { Schema } = mongoose
 
 function hash(password) {
@@ -57,5 +58,14 @@ Account.statics.localRegister = function ({ username, email, password }) {
 Account.methods.validatePassword = function (password) {
   return this.password === hash(password)
 };
+
+Account.methods.generateToken = function() {
+  const payload = {
+    _id: this._id,
+    profile: this.profile
+  }
+
+  return generateToken(payload, 'account')
+}
 
 module.exports = mongoose.model('Account', Account)
