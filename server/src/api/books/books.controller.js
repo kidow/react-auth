@@ -47,8 +47,19 @@ exports.create = async (req, res) => {
   }
 };
 
-exports.delete = (req, res) => {
-  res.send('deleted');
+exports.delete = async (req, res) => {
+  const { id } = req.params
+  try {
+    await Book.findByIdAndRemove(id).exec()
+    res.status(204)
+  } catch (e) {
+    if (e.name === 'CastError') {
+      ctx.status = 400;
+      return;
+    }
+    res.status(500)
+    console.log(e)
+  }
 };
 
 exports.replace = (req, res) => {
