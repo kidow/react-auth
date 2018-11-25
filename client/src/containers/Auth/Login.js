@@ -5,7 +5,7 @@ import AuthButton from 'components/Auth/AuthButton'
 import RightAlignedLink from 'components/Auth/RightAlignedLink'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import * as authActions from '../../store/auth'
+import * as authActions from 'store/auth'
 
 class Login extends Component {
   handleChange = e => {
