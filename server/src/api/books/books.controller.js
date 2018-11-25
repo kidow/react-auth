@@ -102,6 +102,20 @@ exports.replace = async (req, res) => {
   }
 };
 
-exports.update = (req, res) => {
-  res.send('updated');
+exports.update = async (req, res) => {
+  const { id } = req.params
+  if (!ObjectId.isValid(id)) {
+    res.status(400)
+    return
+  }
+  let book
+  try {
+    book = await Book.findByIdAndUpdate(id, req.body, {
+      new: true
+    })
+    res.json(book)
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
 };
