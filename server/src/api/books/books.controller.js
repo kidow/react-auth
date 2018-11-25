@@ -1,7 +1,14 @@
 const Book = require('../../models/book')
 
-exports.list = (req, res) => {
-  res.send('listed');
+exports.list = async (req, res) => {
+  let books
+  try {
+    books = await Book.find().exec()
+    res.json(books)
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
 };
 
 exports.create = async (req, res) => {
