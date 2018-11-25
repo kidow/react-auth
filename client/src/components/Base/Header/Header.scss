@@ -1,0 +1,36 @@
+.positioner {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  .white-background {
+    background: white;
+    display: flex;
+    justify-content: center;
+    height: auto;
+    .header-contents {
+      width: 1200px;
+      height: 55px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      padding-right: 1rem;
+      padding-left: 1rem;
+      .logo {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        color: #00c348;
+        font-family: 'Rajdhani';
+      }
+      .spacer {
+        flex-grow: 1;
+      }
+    }
+  }
+  .gradient-border {
+    height: 3px;
+    background: linear-gradient(to right, #00dca6, #00adc2);
+  }
+}
