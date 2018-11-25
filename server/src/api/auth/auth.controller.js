@@ -40,7 +40,34 @@ exports.localRegister = async (req, res) => {
 };
 
 exports.localLogin = async (req, res) => {
-  res.send('localLogin');
+  const schema = Joi.object().keys({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+  });
+
+  const result = Joi.validate(req.body, schema)
+
+  if (result.error) {
+    res.status(400)
+    return
+  }
+
+  const { email, password } = req.body
+
+  let account = null
+  try {
+    account = await Account.findByEmail(email)
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
+
+  if (!account || !account.validatePassword(password)) {
+    res.status(403)
+    return
+  }
+
+  res.json(account.profile)
 };
 
 exports.exists = async (req, res) => {

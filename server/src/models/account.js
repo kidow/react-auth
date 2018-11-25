@@ -46,9 +46,7 @@ Account.statics.findByEmailOrUsername = function({username, email}) {
 
 Account.statics.localRegister = function ({ username, email, password }) {
   const account = new this({
-    profile: {
-      username
-    },
+    profile: { username },
     email,
     password: hash(password)
   });
@@ -57,8 +55,7 @@ Account.statics.localRegister = function ({ username, email, password }) {
 };
 
 Account.methods.validatePassword = function (password) {
-  const hashed = hash(password);
-  return this.password === hashed;
+  return this.password === hash(password)
 };
 
 module.exports = mongoose.model('Account', Account)
