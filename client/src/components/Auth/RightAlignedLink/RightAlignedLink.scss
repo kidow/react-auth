@@ -1,0 +1,10 @@
+.aligner {
+  margin-top: 1rem;
+  text-align: right;
+  .styled-link {
+    color: #848e97;
+    &:hover {
+      color: #475058;
+    }
+  }
+}
