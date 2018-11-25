@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
-const bcrpyt = require('bcrypt')
+const crypto = require('crypto');
 const { Schema } = mongoose
+
+function hash(password) {
+  return crypto.createHmac('sha256', process.env.SECRET_KEY).update(password).digest('hex');
+}
 
 const Account = new Schema({
   profile: {
@@ -41,20 +45,21 @@ Account.statics.findByEmailOrUsername = function({username, email}) {
   }).exec()
 }
 
-Account.statics.localResigter = function({username, email, password}) {
+Account.statics.localRegister = function ({ username, email, password }) {
   const account = new this({
     profile: {
       username
     },
     email,
-    password: bcrpyt.hashSync(password, 12)
-  })
+    password: hash(password)
+  });
 
-  return account.save()
-}
+  return account.save();
+};
 
-Account.methods.validatePassword = function(password) {
-  return bcrpyt.compareSync(password, this.password)
-}
+Account.methods.validatePassword = function (password) {
+  const hashed = hash(password);
+  return this.password === hashed;
+};
 
 module.exports = mongoose.model('Account', Account)
