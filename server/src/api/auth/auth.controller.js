@@ -101,7 +101,16 @@ exports.exists = async (req, res) => {
   res.json({ exists: account !== null })
 };
 
-exports.logout = async (req, res) => {
+exports.logout = (req, res) => {
   res.cookie('access_token', null, { maxAge: 0, httpOnly: true })
   res.status(204)
 };
+
+exports.check = (req, res) => {
+  const { user } = req
+  if (!user) {
+    res.status(403)
+    return
+  }
+  res.json(user.profile)
+}
