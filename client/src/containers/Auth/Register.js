@@ -3,6 +3,7 @@ import AuthContent from 'components/Auth/AuthContent';
 import InputWithLabel from 'components/Auth/InputWithLabel'
 import AuthButton from 'components/Auth/AuthButton'
 import RightAlignedLink from 'components/Auth/RightAlignedLink'
+import AuthError from 'components/Auth/AuthError'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
@@ -63,6 +64,7 @@ class Register extends Component {
     AuthActions.initializeForm('register')
   }
   render() {
+    const { error } = this.props
     const { email, username, password, passwordConfirm } = this.props.form.toJS()
     const { handleChange } = this
     return (
@@ -97,6 +99,9 @@ class Register extends Component {
           value={passwordConfirm}
           onChange={handleChange}
         />
+        {
+          error && <AuthError>{error}</AuthError>
+        }
         <AuthButton>회원가입</AuthButton>
         <RightAlignedLink to='/auth/login'>로그인</RightAlignedLink>
       </AuthContent>
@@ -106,7 +111,8 @@ class Register extends Component {
 
 export default connect(
   state => ({
-    form: state.auth.getIn(['register', 'form'])
+    form: state.auth.getIn(['register', 'form']),
+    error: state.auth.getIn(['register', 'error'])
   }),
   dispatch => ({
     AuthActions: bindActionCreators(authActions, dispatch)
