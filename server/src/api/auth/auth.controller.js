@@ -76,7 +76,16 @@ exports.localLogin = async (req, res) => {
     res.status(403)
     return
   }
+  
+  let token = null
+  try {
+    token = await account.generateToken()
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
 
+  res.cookie('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 })
   res.json(account.profile)
 };
 
