@@ -15,6 +15,20 @@ exports.localRegister = async (req, res) => {
     return
   }
 
+  let existing = null
+  try {
+    existing = await Account.findByEmailOrUsername(req.body)
+  } catch (e) {
+    res.status(500)
+    console.log(e)
+  }
+
+  if (existing) {
+    res.status(409)
+    res.json({ key: existing.email === req.body.email ? 'email' : 'username' })
+    return
+  }
+
   let account = null
   try {
     account = await Account.localRegister(req.body)
