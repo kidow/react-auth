@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
-import Header from '../../components/Base/Header';
+import { connect } from 'react-redux'
+import Header from 'components/Base/Header';
+import LoginButton from 'components/Base/LoginButton'
 
 class HeaderContainer extends Component {
   render() {
     return (
       <Header>
-        Hi
+        <LoginButton />
       </Header>
     );
   }
 }
 
-export default HeaderContainer;
+export default connect(
+  state => ({
+    
+  }),
+  dispatch => ({
+
+  })
+)(HeaderContainer);
