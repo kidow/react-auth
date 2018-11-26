@@ -55,14 +55,47 @@ class Register extends Component {
     const { AuthActions } = this.props
     const { name, value } = e.target
     AuthActions.changeInput({ name, value, form: 'register' })
+
     const validation = this.validate[name](value)
     if (name.indexOf('password') > -1 || !validation) return; // 비밀번호 검증이거나, 검증 실패하면 여기서 마침
+
+    const check = name === 'email' ? this.checkEmailExists : this.checkUsernameExists
+    check(value)
+  }
+  
+  checkEmailExists = async email => {
+    const { AuthActions } = this.props
+    try {
+      await AuthActions.checkEmailExists(email)
+      if (this.props.exists.get('email')) {
+        this.setError('이미 존재하는 이메일입니다.')
+      } else {
+        this.setError(null)
+      }
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  checkUsernameExists = async username => {
+    const { AuthActions } = this.props
+    try {
+      await AuthActions.checkUsernameExists(username)
+      if (this.props.exists.get('username')) {
+        this.setError('이미 존재하는 아이디입니다.')
+      } else {
+        this.setError(null)
+      }
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   componentWillUnmount() {
     const { AuthActions } = this.props;
     AuthActions.initializeForm('register')
   }
+  
   render() {
     const { error } = this.props
     const { email, username, password, passwordConfirm } = this.props.form.toJS()
