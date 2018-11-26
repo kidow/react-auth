@@ -14,7 +14,7 @@ const WritePost = ({onChange, onPost, value}) => {
         value={value}
         onChange={onChange}
       />
-      <Progress />
+      <Progress onPost={onPost} value={value}/>
     </div>
   );
 };
