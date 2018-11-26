@@ -9,6 +9,8 @@ import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
 import { isEmail, isLength, isAlphanumeric } from 'validator'
 import debounce from 'lodash/debounce'
+import * as userActions from 'store/user'
+import storage from 'lib/storage'
 
 class Register extends Component {
   setError = message => {
@@ -93,7 +95,7 @@ class Register extends Component {
   }, 300)
 
   handleLocalRegister = async () => {
-    const { form, AuthActions, error, history } = this.props
+    const { form, AuthActions, UserActions, error, history } = this.props
     const { email, username, password, passwordConfirm } = form.toJS()
     const { validate } = this
 
@@ -109,6 +111,9 @@ class Register extends Component {
     try {
       await AuthActions.localRegister({ email, username, password })
       const loggedInfo = this.props.result.toJS()
+      storage.set('loggedInfo', loggedInfo)
+      UserActions.setLoggedInfo(loggedInfo)
+      UserActions.setValidated(true)
       console.log('loggedInfo :', loggedInfo)
       history.push('/')
     } catch (e) {
@@ -179,6 +184,7 @@ export default connect(
     result: state.auth.get('result')
   }),
   dispatch => ({
-    AuthActions: bindActionCreators(authActions, dispatch)
+    AuthActions: bindActionCreators(authActions, dispatch),
+    UserActions: bindActionCreators(userActions, dispatch)
   })
 )(Register);
