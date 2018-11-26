@@ -8309,6 +8309,11 @@ react-textarea-autosize@^7.1.0-1:
     "@babel/runtime" "^7.1.2"
     prop-types "^15.6.0"
 
+react-timeago@^4.1.9:
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/react-timeago/-/react-timeago-4.1.9.tgz#a5dee4ac072299a9a5ca5a61f56177a80f83c1fb"
+  integrity sha512-MKucv9nU65BOPqIrClAFxqvpGCC4RdRpqp0P1YIb7C3yT6TQVdcoOlr0k4TDHvLQhbkwd3nbTxiDQMa3iDlZxg==
+
 react-toastify@^4.4.3:
   version "4.4.3"
   resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-4.4.3.tgz#bf4a514b4a160e20ad227a95bd84c9853d1f86ca"

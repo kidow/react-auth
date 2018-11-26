@@ -1,29 +1,30 @@
 import React from 'react';
 import './PostList.scss'
 import Masonry from 'react-masonry-component'
-
-const Post = () => <div className='post'/>
+import PostItem from '../PostItem';
 
 const PostList = () => {
   return (
     <div className='post-list'>
       <Masonry options={{gutter: 16}}>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
+        <PostItem />
       </Masonry>
     </div>
   );

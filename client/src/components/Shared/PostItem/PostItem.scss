@@ -1,0 +1,44 @@
+.post-item {
+  margin-bottom: 1rem;
+  background: white;
+  width: calc((100% - 32px) / 3);
+  .post-head {
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid #e7ecef;
+    .post-user-thumbnail {
+      background: #e7ecef;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+    .post-username {
+      font-weight: 500;
+      margin-left: 0.3rem;
+      font-size: 0.9rem;
+    }
+    .post-count {
+      color: #848e97;
+      margin-left: 0.3rem;
+      font-size: 0.8rem;
+    }
+    .post-time {
+      color: #cdd4d9;
+      font-size: 0.8rem;
+      margin-left: auto;
+    }
+  }
+  .post-content {
+    font-size: 1.25rem;
+    color: #333a41;
+    font-weight: 300;
+    padding: 1rem;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+}
