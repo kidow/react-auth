@@ -1,0 +1,11 @@
+.post {
+  width: calc((100% - 32px) / 3);
+  height: 400px;
+  margin-bottom: 1rem;
+  background: white;
+}
+
+.post-list {
+  position: relative;
+  margin-top: 1rem;
+}

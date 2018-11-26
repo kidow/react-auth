@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import * as userActions from 'store/user'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
+import HeaderContainer from 'containers/Base/HeaderContainer';
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
+        <HeaderContainer />
         <Route exact path='/' component={HomePage}/>
         <Route path='/auth' component={AuthPage}/>
         <ToastContainer style={{zIndex: 20}} hideProgressBar position='bottom-right'/>
