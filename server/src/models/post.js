@@ -20,4 +20,9 @@ const Post = new Schema({
   }
 })
 
+Post.statics.list = function({cursor, username, self}) {
+  const query = {}
+  return this.find(query).sort({ _id: -1 }).limit(20).exec()
+}
+
 module.exports = mongoose.model('Post', Post)
