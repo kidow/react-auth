@@ -12,6 +12,8 @@ function generateToken(payload) {
   )
 }
 
+exports.generateToken = generateToken
+
 function decodeToken(token) {
   return new Promise(
     (resolve, reject) => {
@@ -22,8 +24,6 @@ function decodeToken(token) {
     }
   )
 }
-
-exports.generateToken = generateToken
 
 exports.jwtMiddleware = async (req, res, next) => {
   const token = req.cookies['access_token']

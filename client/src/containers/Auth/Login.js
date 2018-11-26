@@ -48,6 +48,12 @@ class Login extends Component {
     }
   }
 
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      this.handleLogin()
+    }
+  }
+
   componentWillUnmount() {
     const { AuthActions } = this.props;
     AuthActions.initializeForm('login')
@@ -62,7 +68,7 @@ class Login extends Component {
   }
   render() {
     const { email, password } = this.props.form.toJS()
-    const { handleChange, handleLogin } = this
+    const { handleChange, handleLogin, handleKeyPress } = this
     const { error } = this.props
     return (
       <AuthContent title='로그인'>
@@ -80,6 +86,7 @@ class Login extends Component {
           type='password'
           value={password}
           onChange={handleChange}
+          onKeyPress={handleKeyPress}
         />
         {error && <AuthError>{error}</AuthError>}
         <AuthButton onClick={handleLogin}>로그인</AuthButton>

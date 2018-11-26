@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const Account = require('../../models/account')
+const Account = require('models/account')
 
 exports.localRegister = async (req, res) => {
   const schema = Joi.object().keys({
@@ -47,13 +47,13 @@ exports.localRegister = async (req, res) => {
 
   res.cookie('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 })
   res.json(account.profile)
-};
+}
 
 exports.localLogin = async (req, res) => {
   const schema = Joi.object().keys({
     email: Joi.string().email().required(),
     password: Joi.string().required()
-  });
+  })
 
   const result = Joi.validate(req.body, schema)
 
@@ -87,24 +87,24 @@ exports.localLogin = async (req, res) => {
 
   res.cookie('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 })
   res.json(account.profile)
-};
+}
 
 exports.exists = async (req, res) => {
   const { key, value } = req.params
   let account = null
   try {
-    account = await (key === 'email' ? Account.findByEmail(value) : Account.findByUsername(value))
+    account = await (key === 'email' ? account.findByEmail(value) : Account.findByUsername(value))
   } catch (e) {
     res.status(500)
     console.log(e)
   }
   res.json({ exists: account !== null })
-};
+}
 
 exports.logout = (req, res) => {
   res.cookie('access_token', null, { maxAge: 0, httpOnly: true })
   res.status(204)
-};
+}
 
 exports.check = (req, res) => {
   const { user } = req
