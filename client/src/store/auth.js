@@ -1,7 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import { pender } from 'redux-pender'
 import { Map } from 'immutable'
-import * as AuthAPI from 'lib/api/auth'
+import * as api from 'lib/api/auth'
 
 const CHANGE_INPUT = 'auth/CHANGE_INPUT'
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM'
@@ -14,11 +14,11 @@ const SET_ERROR = 'auth/SET_ERROR'
 
 export const changeInput = createAction(CHANGE_INPUT)
 export const initializeForm = createAction(INITIALIZE_FORM)
-export const checkEmailExists = createAction(CHECK_EMAIL_EXISTS, AuthAPI.checkEmailExists)
-export const checkUsernameExists = createAction(CHECK_USERNAME_EXISTS, AuthAPI.checkUsernameExists)
-export const localRegister = createAction(LOCAL_REGISTER, AuthAPI.localRegister)
-export const localLogin = createAction(LOCAL_LOGIN, AuthAPI.localLogin)
-export const logout = createAction(LOGOUT, AuthAPI.logout)
+export const checkEmailExists = createAction(CHECK_EMAIL_EXISTS, api.checkEmailExists)
+export const checkUsernameExists = createAction(CHECK_USERNAME_EXISTS, api.checkUsernameExists)
+export const localRegister = createAction(LOCAL_REGISTER, api.localRegister)
+export const localLogin = createAction(LOCAL_LOGIN, api.localLogin)
+export const logout = createAction(LOGOUT, api.logout)
 export const setError = createAction(SET_ERROR)
 
 const initialState = Map({
