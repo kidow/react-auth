@@ -93,7 +93,7 @@ exports.exists = async (req, res) => {
   const { key, value } = req.params
   let account = null
   try {
-    account = await (key === 'email' ? account.findByEmail(value) : Account.findByUsername(value))
+    account = await (key === 'email' ? Account.findByEmail(value) : Account.findByUsername(value))
   } catch (e) {
     res.status(500)
     console.log(e)

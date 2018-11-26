@@ -5,6 +5,7 @@ import LoginButton from 'components/Base/LoginButton'
 import * as userActions from 'store/user'
 import { bindActionCreators } from 'redux'
 import storage from 'lib/storage'
+import UserThumbnail from '../../components/Base/UserThumbnail/UserThumbnail';
 
 class HeaderContainer extends Component {
   handleLogout = async () => {
@@ -26,7 +27,7 @@ class HeaderContainer extends Component {
         {user.get('logged') ? (
           <div>
             {user.getIn(['loggedInfo', 'username'])}
-            <div onClick={handleLogout}>로그아웃</div>
+            <UserThumbnail thumbnail={user.getIn(['loggedInfo', 'thumbnail'])}/>
           </div>
         ) : (
           <LoginButton />
