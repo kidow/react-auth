@@ -1,6 +1,7 @@
 const Account = require('../../models/account')
 const Post = require('../../models/post')
 const Joi = require('joi')
+const { Types: { ObjectId } } = require('mongoose')
 
 exports.write = async (req, res) => {
   const { user } = req
@@ -56,15 +57,22 @@ exports.write = async (req, res) => {
 }
 
 exports.list = async (req, res) => {
+  const { cursor, username } = req.query
+
+  if (cursor && !ObjectId.isValid(cursor)) {
+    res.status(400)
+    return
+  }
+
   let posts = null
   try {
-    posts = await Post.list({})
+    posts = await Post.list({cursor, username})
   } catch (e) {
     res.status(500)
     console.log(e)
   }
 
-  const next = posts.length === 20 ? `/api/posts/?cursor=${posts[19]._id}` : null
+  const next = posts.length === 20 ? `/api/posts/?${username ? `username=${username}&` : ''}cursor=${posts[19]._id}` : null
 
   res.json({ next, data: posts })
 }

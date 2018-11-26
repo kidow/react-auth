@@ -21,7 +21,10 @@ const Post = new Schema({
 })
 
 Post.statics.list = function({cursor, username, self}) {
-  const query = {}
+  const query = Object.assign({}, 
+    cursor ? { _id: { $lt: cursor } } : {},
+    username ? { username } : {}
+  )
   return this.find(query).sort({ _id: -1 }).limit(20).exec()
 }
 
