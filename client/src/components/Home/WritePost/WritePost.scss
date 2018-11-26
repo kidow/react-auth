@@ -3,4 +3,17 @@
   margin: 0 auto;
   padding: 1rem;
   background: #475058;
+  .textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: white;
+    &::placeholder {
+        color: #dde2e5;
+    }
+  }
 }
