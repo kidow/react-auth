@@ -1,0 +1,16 @@
+.menu-item {
+  & + & {
+    border-top: 1px solid #dde2e5;
+  }
+  
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: #475058;
+  cursor: pointer;
+  &:hover {
+      background: #f8f9fa;
+      font-weight: 500;
+      color: #00adc2;
+  }
+}
