@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
 import * as userActions from 'store/user'
 import storage from 'lib/storage'
+import queryString from 'query-string'
 
 class Login extends Component {
   handleChange = e => {
@@ -50,6 +51,14 @@ class Login extends Component {
   componentWillUnmount() {
     const { AuthActions } = this.props;
     AuthActions.initializeForm('login')
+  }
+
+  componentDidMount() {
+    const { location } = this.props
+    const query = queryString.parse(location.search)
+    if (!query.expired) {
+      this.setError('세션이 만료되었습니다. 다시 로그인하세요.')
+    }
   }
   render() {
     const { email, password } = this.props.form.toJS()
