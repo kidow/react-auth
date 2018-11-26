@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as baseActions from 'redux/modules/base';
-import * as userActions from 'redux/modules/user';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as baseActions from 'store/base'
+import * as userActions from 'store/user'
 import storage from 'lib/storage'
 import UserMenu from 'components/Base/UserMenu'
-import UserName from 'components/Base/UserName';
+import UserName from 'components/Base/UserName'
 import UserMenuItem from 'components/Base/UserMenuItem'
 import onClickOutside from 'react-onclickoutside'
 
 class UserMenuContainer extends Component {
-  handleClickOutside = e => {
+  handleClickOutside = () => {
     const { BaseActions } = this.props
     BaseActions.setUserMenuVisibility(false)
   }
@@ -37,7 +37,7 @@ class UserMenuContainer extends Component {
         <UserMenuItem>설정</UserMenuItem>
         <UserMenuItem onClick={handleLogout}>로그아웃</UserMenuItem>
       </UserMenu>
-    );
+    )
   }
 }
 
@@ -50,4 +50,4 @@ export default connect(
     BaseActions: bindActionCreators(baseActions, dispatch),
     UserActions: bindActionCreators(userActions, dispatch)
   })
-)(onClickOutside(UserMenuContainer));
+)(onClickOutside(UserMenuContainer))
