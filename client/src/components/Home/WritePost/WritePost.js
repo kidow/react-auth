@@ -1,6 +1,7 @@
 import React from 'react';
 import './WritePost.scss'
 import TextArea from 'react-textarea-autosize'
+import Progress from '../Progress'
 
 const WritePost = ({onChange, value}) => {
   return (
@@ -13,6 +14,7 @@ const WritePost = ({onChange, value}) => {
         value={value}
         onChange={onChange}
       />
+      <Progress />
     </div>
   );
 };
