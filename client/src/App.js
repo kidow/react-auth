@@ -5,6 +5,8 @@ import storage from 'lib/storage'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from 'store/user'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.min.css'
 
 class App extends Component {
 
@@ -31,6 +33,7 @@ class App extends Component {
       <Switch>
         <Route exact path='/' component={HomePage}/>
         <Route path='/auth' component={AuthPage}/>
+        <ToastContainer style={{zIndex: 20}} hideProgressBar position='bottom-right'/>
       </Switch>
     );
   }
