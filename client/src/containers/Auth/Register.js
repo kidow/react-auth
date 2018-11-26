@@ -54,18 +54,6 @@ class Register extends Component {
     }
   }
 
-  handleChange = e => {
-    const { AuthActions } = this.props
-    const { name, value } = e.target
-    AuthActions.changeInput({ name, value, form: 'register' })
-
-    const validation = this.validate[name](value)
-    if (name.indexOf('password') > -1 || !validation) return; // 비밀번호 검증이거나, 검증 실패하면 여기서 마침
-
-    const check = name === 'email' ? this.checkEmailExists : this.checkUsernameExists
-    check(value)
-  }
-  
   checkEmailExists = debounce(async email => {
     const { AuthActions } = this.props
     try {
@@ -94,11 +82,23 @@ class Register extends Component {
     }
   }, 300)
 
+  handleChange = e => {
+    const { AuthActions } = this.props
+    const { name, value } = e.target
+    AuthActions.changeInput({ name, value, form: 'register' })
+
+    const validation = this.validate[name](value)
+    if (name.indexOf('password') > -1 || !validation) return; // 비밀번호 검증이거나, 검증 실패하면 여기서 마침
+
+    const check = name === 'email' ? this.checkEmailExists : this.checkUsernameExists
+    check(value)
+  }
+
   handleLocalRegister = async () => {
     const { form, AuthActions, UserActions, error, history } = this.props
     const { email, username, password, passwordConfirm } = form.toJS()
     const { validate } = this
-
+    
     if (error) return
 
     if (!validate['email'](email) 

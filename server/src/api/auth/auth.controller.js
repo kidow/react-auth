@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const Account = require('models/account')
+const Account = require('../../models/account')
 
 exports.localRegister = async (req, res) => {
   const schema = Joi.object().keys({
