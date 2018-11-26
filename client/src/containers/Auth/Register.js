@@ -8,6 +8,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
 import { isEmail, isLength, isAlphanumeric } from 'validator'
+import debounce from 'lodash/debounce'
 
 class Register extends Component {
   setError = message => {
@@ -63,7 +64,7 @@ class Register extends Component {
     check(value)
   }
   
-  checkEmailExists = async email => {
+  checkEmailExists = debounce(async email => {
     const { AuthActions } = this.props
     try {
       await AuthActions.checkEmailExists(email)
@@ -75,9 +76,9 @@ class Register extends Component {
     } catch (e) {
       console.log(e)
     }
-  }
+  }, 300)
 
-  checkUsernameExists = async username => {
+  checkUsernameExists = debounce(async username => {
     const { AuthActions } = this.props
     try {
       await AuthActions.checkUsernameExists(username)
@@ -89,13 +90,13 @@ class Register extends Component {
     } catch (e) {
       console.log(e)
     }
-  }
+  }, 300)
 
   componentWillUnmount() {
     const { AuthActions } = this.props;
     AuthActions.initializeForm('register')
   }
-  
+
   render() {
     const { error } = this.props
     const { email, username, password, passwordConfirm } = this.props.form.toJS()
@@ -145,7 +146,8 @@ class Register extends Component {
 export default connect(
   state => ({
     form: state.auth.getIn(['register', 'form']),
-    error: state.auth.getIn(['register', 'error'])
+    error: state.auth.getIn(['register', 'error']),
+    exists: state.auth.getIn(['register', 'exists'])
   }),
   dispatch => ({
     AuthActions: bindActionCreators(authActions, dispatch)
