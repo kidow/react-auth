@@ -26,13 +26,13 @@ function decodeToken(token) {
 exports.generateToken = generateToken
 
 exports.jwtMiddleware = async (req, res, next) => {
-  const token = req.cookie['access_token']
+  const token = req.cookies['access_token']
   if (!token) return next()
 
   try {
-    const decoded = await decodedToken(token)
+    const decoded = await decodeToken(token)
 
-    if (Date.now() / 1000 - decoded.iat> 60 * 60 * 24) {
+    if (Date.now() / 1000 - decoded.iat > 60 * 60 * 24) {
       const { _id, profile } = decoded
       const freshToken = await generateToken({ _id, profile }, 'account')
       res.cookie('access_token', freshToken, {

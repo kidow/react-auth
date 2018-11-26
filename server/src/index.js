@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
-const { jwtMiddleware } = require('./lib/token')
+const { jwtMiddleware } = require('lib/token')
 const port = process.env.PORT || 4000
 
 const apiRouter = require('./api')
