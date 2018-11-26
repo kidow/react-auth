@@ -5,7 +5,7 @@ import LoginButton from 'components/Base/LoginButton'
 import * as userActions from 'store/user'
 import { bindActionCreators } from 'redux'
 import storage from 'lib/storage'
-import UserThumbnail from '../../components/Base/UserThumbnail/UserThumbnail';
+import UserThumbnail from 'components/Base/UserThumbnail/UserThumbnail';
 
 class HeaderContainer extends Component {
   handleLogout = async () => {
@@ -20,7 +20,6 @@ class HeaderContainer extends Component {
   }
 
   render() {
-    const { handleLogout } = this
     const { user } = this.props
     return (
       <Header>
