@@ -1,5 +1,6 @@
 @import '~lib/styles/modules';
 @import '~lib/styles/shadow';
+@import '~lib/styles/utils';
 
 .write-post {
   width: 768px;
@@ -8,6 +9,8 @@
   background: $oc-gray-7;
   position: relative;
   @include shadow(1);
+  @include media("<desktop") { width: 736px }
+  @include media("<tablet") { width: 100% }
   .textarea {
     width: 100%;
     background: transparent;
@@ -20,5 +23,6 @@
     &::placeholder {
       color: $oc-gray-3;
     }
+    @include media("<tablet") { font-size: 1rem }
   }
 }
