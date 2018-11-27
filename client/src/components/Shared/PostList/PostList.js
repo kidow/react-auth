@@ -3,28 +3,14 @@ import './PostList.scss'
 import Masonry from 'react-masonry-component'
 import PostItem from '../PostItem';
 
-const PostList = () => {
+const PostList = ({posts}) => {
+  const postList = posts.map(post => {
+    return <PostItem key={post.get('_id')} post={post}/>
+  })
   return (
     <div className='post-list'>
       <Masonry options={{gutter: 16}}>
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
-        <PostItem />
+        {postList}
       </Masonry>
     </div>
   );
