@@ -1,4 +1,5 @@
 @import '~lib/styles/modules';
+@import '~lib/styles/shadow';
 
 .positioner {
   display: flex;
@@ -6,6 +7,7 @@
   position: fixed;
   top: 0px;
   width: 100%;
+  @include shadow(1); 
   z-index: 20;
   .white-background {
     background: white;

@@ -1,10 +1,13 @@
 @import '~lib/styles/modules';
+@import '~lib/styles/shadow';
 
 .write-post {
   width: 768px;
   margin: 0 auto;
   padding: 1rem;
   background: $oc-gray-7;
+  position: relative;
+  @include shadow(1);
   .textarea {
     width: 100%;
     background: transparent;
@@ -15,7 +18,7 @@
     font-weight: 300;
     color: white;
     &::placeholder {
-        color: $oc-gray-3;
+      color: $oc-gray-3;
     }
   }
 }

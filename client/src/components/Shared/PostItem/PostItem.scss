@@ -1,9 +1,11 @@
 @import '~lib/styles/modules';
+@import '~lib/styles/shadow';
 
 .post-item {
   margin-bottom: 1rem;
   background: white;
   width: calc((100% - 32px) / 3);
+  @include shadow(1);
   .post-head {
     padding: 1rem;
     display: flex;

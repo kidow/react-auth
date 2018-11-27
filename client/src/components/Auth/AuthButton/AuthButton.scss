@@ -1,4 +1,5 @@
 @import '~lib/styles/modules';
+@import '~lib/styles/shadow';
 
 .button-wrapper {
   margin-top: 1rem;
@@ -18,6 +19,7 @@
 
   &:hover {
       background: $oc-teal-5;
+      @include shadow(0)
   }
 
   &:active {

@@ -1,0 +1,20 @@
+@mixin shadow($value) {
+  @if $value == 0 {
+    box-value: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+  }
+  @if $value == 1 {
+    box-value: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+  }
+  @if $value == 2 {
+    box-value: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)
+  }
+  @if $value == 3 {
+    box-value: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+  }
+  @if $value == 4 {
+    box-value: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)
+  }
+  @if $value > 4 {
+    @warn "$value must be between 0 and 4"
+  }
+}
