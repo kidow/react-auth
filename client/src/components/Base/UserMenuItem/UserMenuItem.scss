@@ -1,16 +1,18 @@
+@import '~lib/styles/modules';
+
 .menu-item {
   & + & {
-    border-top: 1px solid #dde2e5;
+    border-top: 1px solid $oc-gray-3;
   }
   
   padding-left: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  color: #475058;
+  color: $oc-gray-7;
   cursor: pointer;
   &:hover {
-      background: #f8f9fa;
+      background: $oc-gray-0;
       font-weight: 500;
-      color: #00adc2;
+      color: $oc-cyan-6;
   }
 }

@@ -1,9 +1,11 @@
+@import '~lib/styles/modules';
+
 .button-wrapper {
   margin-top: 1rem;
   padding-top: 0.6rem;
   padding-bottom: 0.5rem;
 
-  background: #00adc2;
+  background: $oc-teal-6;
   color: white;
 
   text-align: center;
@@ -15,10 +17,10 @@
   transition: .2s all;
 
   &:hover {
-      background: #00bbd2;
+      background: $oc-teal-5;
   }
 
   &:active {
-      background: #009ab0;
+      background: $oc-teal-7;
   }
 }

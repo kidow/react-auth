@@ -1,5 +1,7 @@
+@import '~lib/styles/modules';
+
 .progress {
-  background: #00cbde;
+  background: $oc-cyan-4;
   height: 4px;
   position: absolute;
   left: 0px;

@@ -1,3 +1,5 @@
+@import '~lib/styles/modules';
+
 .positioner {
   display: flex;
   flex-direction: column;
@@ -22,7 +24,7 @@
       .logo {
         font-size: 1.4rem;
         letter-spacing: 2px;
-        color: #00c348;
+        color: $oc-teal-7;
         font-family: 'Rajdhani';
         text-decoration: none;
       }
@@ -33,6 +35,6 @@
   }
   .gradient-border {
     height: 3px;
-    background: linear-gradient(to right, #00dca6, #00adc2);
+    background: linear-gradient(to right, $oc-teal-6, $oc-cyan-5);
   }
 }

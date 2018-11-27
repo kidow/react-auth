@@ -1,15 +1,17 @@
+@import '~lib/styles/modules';
+
 .wrapper {
   & + & {
     margin-top: 1rem;
   }
   .label {
     font-size: 1rem;
-    color: #848e97;
+    color: $oc-gray-6;
     margin-bottom: 0.25rem;
   }
   .input {
     width: 100%;
-    border: 1px solid #dde2e5;
+    border: 1px solid $oc-gray-3;
     outline: none;
     border-radius: 0px;
     line-height: 2.5rem;
@@ -18,7 +20,7 @@
     padding-right: 0.5rem;
     box-sizing: border-box;
     &::placeholder {
-      color: #dde2e5;
+      color: $oc-gray-3;
     }
   }
 }

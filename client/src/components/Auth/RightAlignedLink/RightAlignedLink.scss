@@ -1,10 +1,12 @@
+@import '~lib/styles/modules';
+
 .aligner {
   margin-top: 1rem;
   text-align: right;
   .styled-link {
-    color: #848e97;
+    color: $oc-gray-6;
     &:hover {
-      color: #475058;
+      color: $oc-gray-7;
     }
   }
 }
