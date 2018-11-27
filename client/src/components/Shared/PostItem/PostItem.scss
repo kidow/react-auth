@@ -3,12 +3,12 @@
 @import '~lib/styles/utils';
 
 .post-item {
-  margin-bottom: 1rem;
-  background: white;
   width: calc((100% - 32px) / 3);
-  @include shadow(1);
   @include media("<desktop") { width: calc(100% - 32px) / 3 }
   @include media("<tablet") { width: 100% }
+  margin-bottom: 1rem;
+  background: white;
+  @include shadow(1);
   .post-head {
     padding: 1rem;
     display: flex;

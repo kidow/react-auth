@@ -3,7 +3,7 @@ import './AuthError.scss'
 
 const AuthError = ({children}) => {
   return (
-    <div className='error'>
+    <div className='auth-error'>
       {children}
     </div>
   );

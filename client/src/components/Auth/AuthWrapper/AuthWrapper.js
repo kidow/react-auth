@@ -4,7 +4,7 @@ import './AuthWrapper.scss'
 
 const AuthWrapper = ({children}) => {
   return (
-    <div className='positioner'>
+    <div className='auth-wrapper'>
       <div className='shadowed-box'>
         <div className='logo-wrapper'>
           <Link className='logo' to='/'>KIDOW</Link>

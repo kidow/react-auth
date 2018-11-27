@@ -29,9 +29,10 @@ class Progress extends Component {
    
   render() {
     const { percentage } = this.state
+    const transition = percentage !== 0 && 'all 1s ease-in-out'
     return (
       <div 
-        style={{width: `${percentage}%`, transition: `${percentage !== 0 && 'all 1s ease-in-out'}`}} 
+        style={{width: `${percentage}%`, transition: `${transition}`}} 
         className='progress' 
         percentage={percentage}
       />

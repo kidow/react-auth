@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const LoginButton = () => {
   return (
-    <Link to='/auth/login' className='bordered-button'>
+    <Link to='/auth/login' className='login-button'>
       로그인 | 가입 
     </Link>
   );

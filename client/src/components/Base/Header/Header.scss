@@ -2,12 +2,12 @@
 @import '~lib/styles/shadow';
 @import '~lib/styles/utils';
 
-.positioner {
+.header {
   display: flex;
   flex-direction: column;
   position: fixed;
-  top: 0px;
   width: 100%;
+  top: 0px;
   @include shadow(1); 
   z-index: 20;
   .white-background {

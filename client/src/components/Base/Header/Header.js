@@ -4,7 +4,7 @@ import './Header.scss'
 
 const Header = ({children}) => {
   return (
-    <div className='positioner'>
+    <div className='header'>
       <div className='white-background'>
         <div className='header-contents'>
           <Link className='logo' to='/'>KIDOW</Link>
