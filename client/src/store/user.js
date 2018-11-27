@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { Map } from 'immutable';
-import * as AuthAPI from 'lib/api/auth';
+import * as api from 'lib/api/auth';
 import { pender } from 'redux-pender';
 
 const SET_LOGGED_INFO = 'user/SET_LOGGED_INFO';
@@ -10,8 +10,8 @@ const CHECK_STATUS = 'user/CHECK_STATUS';
 
 export const setLoggedInfo = createAction(SET_LOGGED_INFO);
 export const setValidated = createAction(SET_VALIDATED);
-export const logout = createAction(LOGOUT, AuthAPI.logout);
-export const checkStatus = createAction(CHECK_STATUS, AuthAPI.checkStatus);
+export const logout = createAction(LOGOUT, api.logout);
+export const checkStatus = createAction(CHECK_STATUS, api.checkStatus);
 
 const initialState = Map({
   loggedInfo: Map({

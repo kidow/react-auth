@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { HomePage, AuthPage } from './pages';
 import storage from 'lib/storage'
 import { connect } from 'react-redux'
@@ -31,12 +31,12 @@ class App extends Component {
   
   render() {
     return (
-      <Switch>
+      <div>
         <HeaderContainer />
         <Route exact path='/' component={HomePage}/>
         <Route path='/auth' component={AuthPage}/>
         <ToastContainer style={{zIndex: 20}} hideProgressBar position='bottom-right'/>
-      </Switch>
+      </div>
     );
   }
 }

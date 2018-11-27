@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import PostList from 'components/Shared/PostList'
+import { PostList } from 'components/Shared'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postsActions from 'store/posts'
 
 class PostListContainer extends Component {
+  prev = null
+  
   load = async () => {
     const { PostsActions } = this.props
     try {

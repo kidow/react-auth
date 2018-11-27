@@ -20,6 +20,11 @@ const Post = new Schema({
   }
 })
 
+Post.statics.write = function({count, username, content}) {
+  const post = new this({count, username, content})
+  return post.save()
+}
+
 Post.statics.list = function({cursor, username, self}) {
   const query = Object.assign({}, 
     cursor ? { _id: { $lt: cursor } } : {},

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import Header from 'components/Base/Header';
-import LoginButton from 'components/Base/LoginButton'
+import { Header, UserThumbnail, LoginButton } from 'components/Base';
 import * as userActions from 'store/user'
 import * as baseActions from 'store/base'
 import { bindActionCreators } from 'redux'
-import UserThumbnail from 'components/Base/UserThumbnail'
 import UserMenuContainer from './UserMenuContainer'
 
 class HeaderContainer extends Component {
@@ -15,15 +13,13 @@ class HeaderContainer extends Component {
   }
 
   render() {
-    const { user } = this.props
+    const { user, visible } = this.props
     const { handleThumbnailClick } = this
+    if (!visible) return null
     return (
       <Header>
         {user.get('logged') ? (
-          <div>
-            {user.getIn(['loggedInfo', 'username'])}
-            <UserThumbnail thumbnail={user.getIn(['loggedInfo', 'thumbnail'])} onClick={handleThumbnailClick}/>
-          </div>
+          <UserThumbnail thumbnail={user.getIn(['loggedInfo', 'thumbnail'])} onClick={handleThumbnailClick}/>
         ) : (
           <LoginButton />
         )}
@@ -36,6 +32,7 @@ class HeaderContainer extends Component {
 export default connect(
   state => ({
     user: state.user,
+    visible: state.base.getIn(['header', 'visible'])
   }),
   dispatch => ({
     UserActions: bindActionCreators(userActions, dispatch),

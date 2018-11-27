@@ -7,7 +7,7 @@ import './PostItem.scss'
 const formatter = buildFormatter(koreanStrings)
 
 const PostItem = ({image, post}) => {
-  const { count, username, content, comments, likesCount, createdAt } = post.toJS()
+  const { count, username, content, createdAt } = post.toJS()
   return (
     <div className='post-item'>
       <div className='post-head'>

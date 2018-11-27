@@ -40,7 +40,7 @@ exports.jwtMiddleware = async (req, res, next) => {
         httpOnly: true
       })
     }
-    req.user(decoded)
+    req.user = decoded
   } catch (e) {
     req.user = null
   }

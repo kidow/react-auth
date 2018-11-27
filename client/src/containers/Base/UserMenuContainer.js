@@ -4,9 +4,7 @@ import { bindActionCreators } from 'redux'
 import * as baseActions from 'store/base'
 import * as userActions from 'store/user'
 import storage from 'lib/storage'
-import UserMenu from 'components/Base/UserMenu'
-import UserName from 'components/Base/UserName'
-import UserMenuItem from 'components/Base/UserMenuItem'
+import { UserMenu, UserName, UserMenuItem } from 'components/Base'
 import onClickOutside from 'react-onclickoutside'
 
 class UserMenuContainer extends Component {

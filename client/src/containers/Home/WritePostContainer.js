@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import WritePost from 'components/Home/WritePost';
+import { WritePost } from 'components/Home';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as homeActions from 'store/home';

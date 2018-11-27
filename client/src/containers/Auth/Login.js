@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import AuthContent from 'components/Auth/AuthContent';
-import InputWithLabel from 'components/Auth/InputWithLabel';
-import AuthButton from 'components/Auth/AuthButton'
-import RightAlignedLink from 'components/Auth/RightAlignedLink'
-import AuthError from 'components/Auth/AuthError'
+import { AuthButton, RightAlignedLink, AuthError, InputWithLabel, AuthContent } from 'components/Auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
@@ -15,6 +11,7 @@ class Login extends Component {
   handleChange = e => {
     const { AuthActions } = this.props
     const { name, value } = e.target
+
     AuthActions.changeInput({
       name, 
       value, 
@@ -31,7 +28,7 @@ class Login extends Component {
     return false
   }
 
-  handleLogin = async () => {
+  handleLocalLogin = async () => {
     const { form, AuthActions, UserActions, history } = this.props
     const { email, password } = form.toJS()
 
@@ -50,7 +47,7 @@ class Login extends Component {
 
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      this.handleLogin()
+      this.handleLocalLogin()
     }
   }
 
@@ -62,13 +59,14 @@ class Login extends Component {
   componentDidMount() {
     const { location } = this.props
     const query = queryString.parse(location.search)
-    if (!query.expired) {
+    if (query.expired) {
       this.setError('세션이 만료되었습니다. 다시 로그인하세요.')
     }
   }
+  
   render() {
     const { email, password } = this.props.form.toJS()
-    const { handleChange, handleLogin, handleKeyPress } = this
+    const { handleChange, handleLocalLogin, handleKeyPress } = this
     const { error } = this.props
     return (
       <AuthContent title='로그인'>
@@ -89,7 +87,7 @@ class Login extends Component {
           onKeyPress={handleKeyPress}
         />
         {error && <AuthError>{error}</AuthError>}
-        <AuthButton onClick={handleLogin}>로그인</AuthButton>
+        <AuthButton onClick={handleLocalLogin}>로그인</AuthButton>
         <RightAlignedLink to='/auth/register'>회원가입</RightAlignedLink>
       </AuthContent>
     );

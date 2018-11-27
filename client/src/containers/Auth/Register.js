@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import AuthContent from 'components/Auth/AuthContent';
-import InputWithLabel from 'components/Auth/InputWithLabel'
-import AuthButton from 'components/Auth/AuthButton'
-import RightAlignedLink from 'components/Auth/RightAlignedLink'
-import AuthError from 'components/Auth/AuthError'
+import { AuthContent, InputWithLabel, AuthButton, RightAlignedLink, AuthError } from 'components/Auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
@@ -105,16 +101,18 @@ class Register extends Component {
         || !validate['username'](username) 
         || !validate['password'](password) 
         || !validate['passwordConfirm'](passwordConfirm)) {
-          return
+
+        return
     }
     
     try {
       await AuthActions.localRegister({ email, username, password })
+      
       const loggedInfo = this.props.result.toJS()
+
       storage.set('loggedInfo', loggedInfo)
       UserActions.setLoggedInfo(loggedInfo)
       UserActions.setValidated(true)
-      console.log('loggedInfo :', loggedInfo)
       history.push('/')
     } catch (e) {
       if (e.response.status === 409) {
