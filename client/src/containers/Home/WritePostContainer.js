@@ -16,10 +16,12 @@ class WritePostContainer extends Component {
     const message = message => (<div style={{fontSize: '1.1rem'}}>{message}</div>)
 
     if (value.length < 5) {
+      HomeActions.changeWritePostInput('')
       return toast(message('너무 짧습니다. 5자 이상 입력하세요.'), { type: 'error' })
     }
 
     if (value.length > 1000) {
+      HomeActions.changeWritePostInput('')
       return toast(message('최대 1000자까지 입력할 수 있습니다.'), { type: 'error' })
     }
 
