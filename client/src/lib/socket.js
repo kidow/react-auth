@@ -12,8 +12,10 @@ export default (function socketHelper() {
   let _store = null
   let _socket = null
   let _uri = null
+  let _listen = null
 
   const listener = message => {
+    if(_listen) return
     const data = parseJSON(message.data)
     if (!data || !data.type) return
     _store.dispatch(data)
@@ -40,6 +42,12 @@ export default (function socketHelper() {
     initialize: (store, uri) => {
       _store = store
       connect(uri)
+    },
+    listen: () => {
+      _listen = true
+    },
+    ignore: () => {
+      _listen = false
     }
   }
 })()
