@@ -52,7 +52,7 @@ exports.like = async (req, res) => {
   })
 }
 
-exports.unlike = async (req, res) => {
+exports.dislike = async (req, res) => {
   const { user } = req
   if (!user) {
     res.status(403)
@@ -89,7 +89,7 @@ exports.unlike = async (req, res) => {
   }
 
   try {
-    post = await Post.unlike({
+    post = await Post.dislike({
       _id: postId,
       username
     })

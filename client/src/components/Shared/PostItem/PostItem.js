@@ -7,8 +7,12 @@ import './PostItem.scss'
 
 const formatter = buildFormatter(koreanStrings)
 
-const PostItem = ({image, post, onToggleLike, liked, likesCount}) => {
-  const { count, username, content, createdAt } = post.toJS()
+const PostItem = ({image, post, onToggleLike}) => {
+  const { _id, count, username, content, createdAt, liked, likesCount } = post.toJS()
+  const toggleLike = () => onToggleLike({
+    postId: _id,
+    liked
+  })
   return (
     <div className='post-item'>
       <div className='post-head'>
@@ -24,7 +28,7 @@ const PostItem = ({image, post, onToggleLike, liked, likesCount}) => {
       <div className='post-content'>
         {content}
       </div>
-      <PostFooter />
+      <PostFooter likesCount={likesCount} liked={liked} onToggleLike={toggleLike}/>
     </div>
   );
 };

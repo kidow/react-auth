@@ -7,6 +7,6 @@ const likesCtrl = require('./likes.controller')
 posts.post('/', postsCtrl.write)
 posts.get('/', postsCtrl.list)
 posts.post('/:postId/likes', likesCtrl.like)
-posts.delete('/:postId/likes', likesCtrl.unlike)
+posts.delete('/:postId/likes', likesCtrl.dislike)
 
 module.exports = posts

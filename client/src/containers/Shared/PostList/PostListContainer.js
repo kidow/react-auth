@@ -56,7 +56,7 @@ class PostListContainer extends Component {
       return toast(message('로그인 후 이용하실 수 있습니다.'), { type: 'error' })
     }
     if (liked) {
-      PostsActions.unlikePost(postId)
+      PostsActions.dislikePost(postId)
     } else {
       PostsActions.likePost(postId)
     }

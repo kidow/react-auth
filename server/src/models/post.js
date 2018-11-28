@@ -43,7 +43,7 @@ Post.statics.like = function({_id, username}) {
   }).exec()
 }
 
-Post.statics.unlike = function({_id, username}) {
+Post.statics.dislike = function({_id, username}) {
   return this.findByIdAndUpdate(_id, {
     $inc: { likesCount: -1 },
     $pull: { likes: username }
