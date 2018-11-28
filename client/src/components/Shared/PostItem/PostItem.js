@@ -2,6 +2,7 @@ import React from 'react';
 import TimeAgo from 'react-timeago'
 import koreanStrings from 'react-timeago/lib/language-strings/ko'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
+import { PostFooter } from 'components/Shared'
 import './PostItem.scss'
 
 const formatter = buildFormatter(koreanStrings)
@@ -23,6 +24,7 @@ const PostItem = ({image, post, onToggleLike, liked, likesCount}) => {
       <div className='post-content'>
         {content}
       </div>
+      <PostFooter />
     </div>
   );
 };
