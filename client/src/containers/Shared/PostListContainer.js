@@ -10,9 +10,9 @@ class PostListContainer extends Component {
   prev = null
   
   load = async () => {
-    const { PostsActions } = this.props
+    const { PostsActions, username } = this.props
     try {
-      await PostsActions.loadPost()
+      await PostsActions.loadPost(username)
       const { next } = this.props
       if (next) {
         await PostsActions.prefetchPost(next)
