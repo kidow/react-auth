@@ -1,0 +1,29 @@
+@import '~lib/styles/modules';
+
+.user-head {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .thumbnail {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+  .username {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $oc-gray-8;
+  }
+  .count {
+    margin-top: 0.25rem;
+    font-weight: 300;
+    color: $oc-gray-6;
+    b {
+      font-weight: 500;
+    }
+  }
+}
