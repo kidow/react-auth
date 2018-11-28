@@ -1,26 +1,23 @@
 const SocketIO = require('socket.io')
 const redis = require('redis')
 
-const publisher = redis.createClient()
 const subscriber = redis.createClient()
 
 subscriber.subscribe('posts')
 
-let counter = 0
-
 module.exports = (server, app) => {
-  const io = SocketIO(server, { path: '/socket.io'})
+  const io = SocketIO(server, { path: '/ws'})
 
   app.set('io', io)
 
-  io.id = counter++
-  io.send(`Hello, user ${io.id}`)
+  const listener = (channel, message) => {
+    io.send(message)
+  }
 
-  io.on('message', message => {
-    publisher.publish('posts', message)
-  })
+  subscriber.on('message', listener)
 
   io.on('close', () => {
-    console.log(`User ${io.id} has left.`)
+    subscriber.removeListener('message', listener)
   })
+
 }

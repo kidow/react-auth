@@ -3,6 +3,9 @@ const Post = require('../../models/post')
 const Joi = require('joi')
 const { Types: { ObjectId } } = require('mongoose')
 
+const redis = require('redis')
+const publisher = redis.createClient()
+
 exports.write = async (req, res) => {
   const { user } = req
   
@@ -54,6 +57,11 @@ exports.write = async (req, res) => {
   }
 
   res.json(post)
+
+  publisher.publish('posts', JSON.stringify({
+    type: 'posts/RECEIVE_NEW_POST',
+    payload: post
+  }))
 }
 
 exports.list = async (req, res) => {
