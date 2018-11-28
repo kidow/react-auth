@@ -1,0 +1,17 @@
+@import '~lib/styles/modules';
+
+.comment-item {
+  font-size: 0.9rem;
+  & + & {
+    margin-top: 0.25rem;
+  }
+  .user {
+    font-weight: 500;
+    margin-right: 0.25rem;
+    color: $oc-gray-9;
+    text-decoration: none;
+  }
+  .text {
+    color: $oc-gray-6;
+  }
+}
