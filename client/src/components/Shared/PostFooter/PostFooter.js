@@ -4,7 +4,7 @@ import './PostFooter.scss'
 import { GoHeart } from 'react-icons/go'
 import { IoMdChatbubbles } from 'react-icons/io'
 
-const PostFooter = ({active, liked, likesCount = 0, comments = [], onToggleLike, onCommentClick}) => {
+const PostFooter = ({liked, likesCount = 0, comments = [], onToggleLike, onCommentClick}) => {
   
   return (
     <div className='post-footer'>

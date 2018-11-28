@@ -37,7 +37,7 @@ exports.write = async (req, res) => {
   const result = Joi.validate(req.body, schema)
 
   if (result.error) {
-    res.status(403)
+    res.status(400)
     return
   }
 
@@ -56,6 +56,10 @@ exports.write = async (req, res) => {
     console.log(e)
   }
 
+  post = post.toJSON()
+  delete post.likes
+  post.liked = false
+
   res.json(post)
 
   publisher.publish('posts', JSON.stringify({
@@ -72,15 +76,28 @@ exports.list = async (req, res) => {
     return
   }
 
+  const { user } = req
+  const self = user ? user.username : null
+
   let posts = null
   try {
-    posts = await Post.list({cursor, username})
+    posts = await Post.list({cursor, username, self})
   } catch (e) {
     res.status(500)
     console.log(e)
   }
 
   const next = posts.length === 20 ? `/api/posts/?${username ? `username=${username}&` : ''}cursor=${posts[19]._id}` : null
+
+  function checkLiked(post) {
+    post = post.toObject()
+
+    const checked = Object.assign(post, { liked: user !== null && post.likes.length > 0})
+    delete checked.likes
+    return checked
+  }
+
+  posts = posts.map(checkLiked)
 
   res.json({ next, data: posts })
 }
