@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser')
 const { jwtMiddleware } = require('./lib/token')
 const morgan = require('morgan')
 const port = process.env.PORT || 4000
+const webSocket = require('./ws')
 
 const apiRouter = require('./api')
-const wsRouter = require('./ws')
 
 const app = express()
 
@@ -31,8 +31,9 @@ app.use(cookieParser())
 app.use(jwtMiddleware)
 
 app.use('/api', apiRouter)
-app.use('/ws', wsRouter)
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('App listening on port ' + port);
 });
+
+webSocket(server, app)

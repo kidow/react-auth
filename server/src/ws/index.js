@@ -1,12 +1,21 @@
-const express = require('express')
 const SocketIO = require('socket.io')
-
-const ws = express()
 
 let counter = 0
 
-ws.get('/ws', (req, res, next) => {
-  const io = SocketIO
-})
+module.exports = (server, app) => {
+  const io = SocketIO(server, { path: '/socket.io'})
 
-module.exports = ws
+  app.set('io', io)
+
+  io.id = counter++
+  io.send(`Hello, user ${io.id}`)
+
+  io.on('message', message => {
+    console.log('message :', message)
+    io.send('pong')
+  })
+
+  io.on('close', () => {
+    console.log(`User ${io.id} has left.`)
+  })
+}
