@@ -24,12 +24,12 @@ class Progress extends Component {
       this.setState({ percentage: 100 })
     }, 0)
 
-    this.timeoutId = setTimeout(this.handlePost, 1000)
+    this.timeoutId = setTimeout(this.handlePost, 5000)
   }
    
   render() {
     const { percentage } = this.state
-    const transition = percentage !== 0 && 'all 1s ease-in-out'
+    const transition = percentage !== 0 && 'all 5s ease-in-out'
     return (
       <div 
         style={{width: `${percentage}%`, transition: `${transition}`}} 
