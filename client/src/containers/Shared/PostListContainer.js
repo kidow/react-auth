@@ -62,6 +62,11 @@ class PostListContainer extends Component {
     }
   }
 
+  handleCommentClick = postId => {
+    const { PostsActions } = this.props
+    PostsActions.toggleComment(postId)
+  }
+
   componentDidMount() {
     this.load()
     window.addEventListener('scroll', this.handleScroll)
@@ -74,11 +79,12 @@ class PostListContainer extends Component {
   
   render() {
     const { data } = this.props
-    const { handleToggleLike } = this
+    const { handleToggleLike, handleCommentClick } = this
     return (
       <PostList 
         posts={data}
         onToggleLike={handleToggleLike}
+        onCommentClick={handleCommentClick}
       />
     )
   }

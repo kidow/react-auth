@@ -8,12 +8,13 @@ import CommentBlockContainer from 'containers/Shared/CommentBlockContainer';
 
 const formatter = buildFormatter(koreanStrings)
 
-const PostItem = ({image, post, onToggleLike}) => {
+const PostItem = ({image, post, onToggleLike, onCommentClick}) => {
   const { _id, count, username, content, createdAt, liked, likesCount } = post.toJS()
   const toggleLike = () => onToggleLike({
     postId: _id,
     liked
   })
+  const commentClick = () => onCommentClick(_id)
   return (
     <div className='post-item'>
       <div className='post-head'>
@@ -29,8 +30,8 @@ const PostItem = ({image, post, onToggleLike}) => {
       <div className='post-content'>
         {content}
       </div>
-      <PostFooter likesCount={likesCount} liked={liked} onToggleLike={toggleLike}/>
-      <CommentBlockContainer />
+      <PostFooter likesCount={likesCount} liked={liked} onToggleLike={toggleLike} onCommentClick={commentClick}/>
+      <CommentBlockContainer post={post}/>
     </div>
   );
 };

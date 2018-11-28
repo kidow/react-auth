@@ -19,7 +19,7 @@ const PostFooter = ({liked, likesCount = 0, comments = [], onToggleLike, onComme
         <span>좋아요 {likesCount}개</span>
       </div>
       <div className='comments'>
-        <IoMdChatbubbles />
+        <IoMdChatbubbles onClick={onCommentClick}/>
         <span>댓글 {comments.length}개</span>
       </div>
     </div>
