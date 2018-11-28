@@ -43,9 +43,9 @@ class WritePostContainer extends Component {
     try {
       await HomeActions.writePost(value)
       this.load()
-      toast(message('글이 작성되었습니다.'), { type: 'success' })
+      toast(message(' 글이 작성되었습니다.'), { type: 'success' })
     } catch (e) {
-      toast(message('오류가 발생되었습니다.',), { type: 'error' })
+      toast(message(' 오류가 발생되었습니다.',), { type: 'error' })
     }
   }
   render() {

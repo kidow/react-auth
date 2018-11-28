@@ -16,7 +16,7 @@ class CommentBlockContainer extends Component {
 
   handleKeyPress = e => {
     if (e.key === 'Enter') {
-      console.log('wa!')
+      this.comment()
     }
   }
 
@@ -31,9 +31,9 @@ class CommentBlockContainer extends Component {
     }
   }
   render() {
-    const { status } = this.props
+    const { status, post } = this.props
     const { visible, value } = status ? status.toJS() : {}
-    const { handleChange, handleKeyPress, comment } = this
+    const { handleChange, handleKeyPress } = this
 
     if (!visible) return null
 
@@ -42,7 +42,7 @@ class CommentBlockContainer extends Component {
         value={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        onInsert={comment}
+        comments={post.get('comments')}
       />
     );
   }

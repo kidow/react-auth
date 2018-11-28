@@ -70,7 +70,7 @@ export default handleActions({
       return state.updateIn(
         ['data', index],
         post => post.set('liked', true)
-                    .update('likedCount', count => count++)
+                    .update('likedCount', count => count + 1)
       )
     },
     onSuccess: (state, action) => {
@@ -86,7 +86,7 @@ export default handleActions({
       return state.updateIn(
         ['data', index],
         post => post.set('liked', true)
-                    .update('likedCount', count => count--)
+                    .update('likedCount', count => count - 1)
       )
     },
     onSuccess: (state, action) => {
