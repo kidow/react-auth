@@ -1,7 +1,7 @@
 import React from 'react';
 import { PageWrapper } from 'components/Base';
 import WritePostContainer from 'containers/Home/WritePostContainer';
-import PostListContainer from 'containers/Shared/PostList/PostListContainer';
+import PostListContainer from 'containers/Shared/PostListContainer';
 
 const HomePage = () => {
   return (

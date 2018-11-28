@@ -4,6 +4,7 @@ import koreanStrings from 'react-timeago/lib/language-strings/ko'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 import { PostFooter } from 'components/Shared'
 import './PostItem.scss'
+import CommentBlockContainer from 'containers/Shared/CommentBlockContainer';
 
 const formatter = buildFormatter(koreanStrings)
 
@@ -29,6 +30,7 @@ const PostItem = ({image, post, onToggleLike}) => {
         {content}
       </div>
       <PostFooter likesCount={likesCount} liked={liked} onToggleLike={toggleLike}/>
+      <CommentBlockContainer />
     </div>
   );
 };
