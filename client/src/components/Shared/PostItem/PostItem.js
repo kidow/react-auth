@@ -5,6 +5,7 @@ import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
 import { PostFooter } from 'components/Shared'
 import './PostItem.scss'
 import CommentBlockContainer from 'containers/Shared/CommentBlockContainer';
+import { Link } from 'react-router-dom'
 
 const formatter = buildFormatter(koreanStrings)
 
@@ -17,17 +18,17 @@ const PostItem = ({image, post, onToggleLike, onCommentClick}) => {
   const commentClick = () => onCommentClick(_id)
   return (
     <div className='post-item'>
-      <div className='post-head'>
+      <div className='head'>
         <div 
           style={{backgroundImage: `url(${image})`}}
-          className='post-user-thumbnail'
+          className='user-thumbnail'
           image={`/api/users/${username}/thumbnail`}
         />
-        <div className='post-username'>{username}</div>
-        <div className='post-count'>#{count}번째 생각</div>
-        <div className='post-time'><TimeAgo date={createdAt} formatter={formatter} /></div>
+        <Link to={`/@${username}`} className='username'>{username}</Link>
+        <div className='count'>#{count}번째 생각</div>
+        <div className='time'><TimeAgo date={createdAt} formatter={formatter} /></div>
       </div>
-      <div className='post-content'>
+      <div className='content'>
         {content}
       </div>
       <PostFooter 
