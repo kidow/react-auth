@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postsActions from 'store/posts'
 import { toast } from 'react-toastify'
+import { setRelayoutHandler } from 'lib/withRelayout'
 
 class PostListContainer extends Component {
   prev = null
@@ -68,9 +69,14 @@ class PostListContainer extends Component {
     setTimeout(() => this.masonry.masonry.layout(), 0);
   }
 
+  handleRelayout = () => {
+    setTimeout(() => this.masonry.masonry.layout(), 0);
+  }
+
   componentDidMount() {
     this.load()
     window.addEventListener('scroll', this.handleScroll)
+    setRelayoutHandler(this.handleRelayout)
   }
 
   componentWillUnmount() {

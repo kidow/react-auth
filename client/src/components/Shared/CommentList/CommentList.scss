@@ -1,0 +1,15 @@
+@import '~lib/styles/modules';
+
+.comment-list {
+  margin-top: 0.75rem;
+  .read-more {
+    color: $oc-gray-6;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: pointer;
+    &:hover {
+      color: $oc-cyan-6;
+      font-weight: 600;
+    }
+  }
+}
