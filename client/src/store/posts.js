@@ -13,6 +13,7 @@ const DISLIKE_POST = 'posts/DISLIKE_POST'
 
 const TOGGLE_COMMENT = 'posts/TOGGLE_COMMENT'
 const CHANGE_COMMENT_INPUT = 'posts/CHANGE_COMMENT_INPUT'
+const COMMENT = 'posts/COMMENT'
 
 export const loadPost = createAction(LOAD_POST, api.list)
 export const prefetchPost = createAction(PREFETCH_POST, api.next)
@@ -23,6 +24,7 @@ export const dislikePost = createAction(DISLIKE_POST, api.dislike, payload => pa
 
 export const toggleComment = createAction(TOGGLE_COMMENT)
 export const changeCommentInput = createAction(CHANGE_COMMENT_INPUT)
+export const comment = createAction(COMMENT, api.comment, ({postId}) => postId)
 
 const initialState = Map({
   next: '',
@@ -106,5 +108,15 @@ export default handleActions({
   [CHANGE_COMMENT_INPUT]: (state, action) => {
     const { postId, value } = action.payload
     return state.setIn(['comments', postId, 'value'], value)
-  }
+  },
+  ...pender({
+    type: COMMENT,
+    onPending: (state, action) => {
+      return state.setIn(['comments', action.meta])
+    },
+    onSuccess: (state, action) => {
+      const index = state.get('data').findIndex(post => post.get('_id') === action.meta)
+      return state.setIn(['data', index, 'comments'], fromJS(action.payload.data))
+    }
+  })
 }, initialState) 

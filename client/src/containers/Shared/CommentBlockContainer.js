@@ -19,18 +19,30 @@ class CommentBlockContainer extends Component {
       console.log('wa!')
     }
   }
+
+  comment = () => {
+    const { PostsActions, post, status } = this.props
+    const value = status.get('value')
+    if (value) {
+      PostsActions.comment({
+        postId: post.get('_id'),
+        text: value
+      })
+    }
+  }
   render() {
     const { status } = this.props
     const { visible, value } = status ? status.toJS() : {}
-    const { handleChange, handleKeyPress } = this
+    const { handleChange, handleKeyPress, comment } = this
 
     if (!visible) return null
-    
+
     return (
       <CommentBlock 
         value={value}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
+        onInsert={comment}
       />
     );
   }
