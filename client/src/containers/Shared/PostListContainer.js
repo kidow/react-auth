@@ -79,10 +79,15 @@ class PostListContainer extends Component {
     setRelayoutHandler(this.handleRelayout)
   }
 
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.username !== this.props.username) {
+      this.load()
+    }
+  };
+  
   componentWillUnmount() {
     window.removeEventListener('scroll', this.handleScroll)
   }
-  
   
   render() {
     const { data } = this.props
