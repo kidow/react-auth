@@ -6,6 +6,7 @@ import { PostFooter } from 'components/Shared'
 import './PostItem.scss'
 import CommentBlockContainer from 'containers/Shared/CommentBlockContainer';
 import { Link } from 'react-router-dom'
+import scuize from 'lib/scuize'
 
 const formatter = buildFormatter(koreanStrings)
 
@@ -43,4 +44,6 @@ const PostItem = ({image, post, onToggleLike, onCommentClick}) => {
   );
 };
 
-export default PostItem;
+export default scuize(PostItem, function(nextProps, nextState) {
+  return this.props.post !== nextProps.post
+});
