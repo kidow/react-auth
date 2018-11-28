@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { WritePost } from 'components/Home';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as homeActions from 'store/home';
+import React, { Component } from 'react'
+import { WritePost } from 'components/Home'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as homeActions from 'store/home'
+import * as userActions from 'store/user'
 import { toast } from 'react-toastify'
 
 class WritePostContainer extends Component {
@@ -34,22 +35,25 @@ class WritePostContainer extends Component {
   }
   render() {
     const { handleChange, handlePost } = this
-    const { value } = this.props
+    const { value, logged } = this.props
     return (
       <WritePost 
         onChange={handleChange}
         onPost={handlePost}
         value={value}
+        logged={logged}
       />
-    );
+    )
   }
 }
 
 export default connect(
   state => ({
-    value: state.home.getIn(['writePost', 'value'])
+    value: state.home.getIn(['writePost', 'value']),
+    logged: state.user.get('logged')
   }),
   dispatch => ({
-    HomeActions: bindActionCreators(homeActions, dispatch)
+    HomeActions: bindActionCreators(homeActions, dispatch),
+    UserActions: bindActionCreators(userActions, dispatch)
   })
-)(WritePostContainer);
+)(WritePostContainer)

@@ -7,6 +7,7 @@ const morgan = require('morgan')
 const port = process.env.PORT || 4000
 
 const apiRouter = require('./api')
+const wsRouter = require('./ws')
 
 const app = express()
 
@@ -30,6 +31,7 @@ app.use(cookieParser())
 app.use(jwtMiddleware)
 
 app.use('/api', apiRouter)
+app.use('/ws', wsRouter)
 
 app.listen(port, () => {
   console.log('App listening on port ' + port);
