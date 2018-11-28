@@ -23,7 +23,7 @@ class HeaderContainer extends Component {
         ) : (
           <LoginButton />
         )}
-        <UserMenuContainer eventTypes="click"/>
+        <UserMenuContainer/>
       </Header>
     );
   }

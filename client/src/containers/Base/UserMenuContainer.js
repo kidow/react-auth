@@ -8,7 +8,7 @@ import { UserMenu, UserName, UserMenuItem } from 'components/Base'
 import onClickOutside from 'react-onclickoutside'
 
 class UserMenuContainer extends Component {
-  handleClickOutside = () => {
+  handleClickOutside = (e) => {
     const { BaseActions } = this.props
     BaseActions.setUserMenuVisibility(false)
   }
@@ -21,7 +21,7 @@ class UserMenuContainer extends Component {
       console.log(e)
     }
     storage.remove('loggedInfo')
-    window.location.href = '/'
+    window.location.reload()
   }
 
   render() {
