@@ -6,7 +6,7 @@ import './PostItem.scss'
 
 const formatter = buildFormatter(koreanStrings)
 
-const PostItem = ({image, post}) => {
+const PostItem = ({image, post, onToggleLike, liked, likesCount}) => {
   const { count, username, content, createdAt } = post.toJS()
   return (
     <div className='post-item'>
