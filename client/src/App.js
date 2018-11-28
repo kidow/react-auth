@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom'
-import { HomePage, AuthPage } from './pages';
+import { HomePage, AuthPage, UserPage } from './pages';
 import storage from 'lib/storage'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -35,6 +35,7 @@ class App extends Component {
         <HeaderContainer />
         <Route exact path='/' component={HomePage}/>
         <Route path='/auth' component={AuthPage}/>
+        <Route path='/@:username' component={UserPage}/>
         <ToastContainer style={{zIndex: 20}} hideProgressBar position='bottom-right'/>
       </div>
     );
