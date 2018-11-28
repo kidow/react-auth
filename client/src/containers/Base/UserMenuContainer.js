@@ -6,10 +6,22 @@ import * as userActions from 'store/user'
 import storage from 'lib/storage'
 import { UserMenu, UserName, UserMenuItem } from 'components/Base'
 import onClickOutside from 'react-onclickoutside'
+import PropTypes from 'prop-types'
 
 class UserMenuContainer extends Component {
+  static contextType = {
+    router: PropTypes.object
+  }
+
   handleClickOutside = (e) => {
     const { BaseActions } = this.props
+    BaseActions.setUserMenuVisibility(false)
+  }
+
+  handleOpenMyHeurm = () => {
+    const { router } = this.context
+    const { username, BaseActions } = this.props
+    router.history.push(`/@${username}`)
     BaseActions.setUserMenuVisibility(false)
   }
 
@@ -26,12 +38,12 @@ class UserMenuContainer extends Component {
 
   render() {
     const { username, visible } = this.props
-    const { handleLogout } = this
+    const { handleLogout, handleOpenMyHeurm } = this
     if (!visible) return null
     return (
       <UserMenu>
         <UserName username={username}/>
-        <UserMenuItem>나의 흐름</UserMenuItem>
+        <UserMenuItem onClick={handleOpenMyHeurm}>나의 흐름</UserMenuItem>
         <UserMenuItem>설정</UserMenuItem>
         <UserMenuItem onClick={handleLogout}>로그아웃</UserMenuItem>
       </UserMenu>
