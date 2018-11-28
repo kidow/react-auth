@@ -6,18 +6,20 @@ const subscriber = redis.createClient()
 subscriber.subscribe('posts')
 
 module.exports = (server, app) => {
-  const io = SocketIO(server, { path: '/ws'})
+  const io = SocketIO(server, { path: '/ws' })
 
   app.set('io', io)
 
-  const listener = (channel, message) => {
-    io.send(message)
-  }
+  io.on('connection', socket => {
+    const listener = (channel, message) => {
+      socket.send(message)
+    }
 
-  subscriber.on('message', listener)
+    subscriber.on('message', listener)
 
-  io.on('close', () => {
-    subscriber.removeListener('message', listener)
+    socket.on('disconnect', () => {
+      subscriber.removeListener('message', listener)
+    })
   })
 
 }

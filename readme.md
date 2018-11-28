@@ -40,3 +40,4 @@ Back-end :
   * crypto
   * jsonwebtoken
   * dotenv
+  * redis

@@ -6,6 +6,7 @@ import { pender } from 'redux-pender'
 const LOAD_POST = 'posts/LOAD_POST'
 const PREFETCH_POST = 'posts/PREFETCH_POST'
 const SHOW_PREFETCHED_POST = 'posts/SHOW_PREFETCHED_POST'
+const RECEIVE_NEW_POST = 'posts/RECEIVE_NEW_POST'
 
 export const loadPost = createAction(LOAD_POST, api.list)
 export const prefetchPost = createAction(PREFETCH_POST, api.next)
@@ -38,5 +39,8 @@ export default handleActions({
     const nextData = state.get('nextData')
     return state.update('data', data => data.concat(nextData))
                 .set('nextData', List())
+  },
+  [RECEIVE_NEW_POST]: (state, action) => {
+    return state.update('data', data => data.unshift(fromJS(action.payload)))
   }
 }, initialState) 

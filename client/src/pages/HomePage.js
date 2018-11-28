@@ -1,5 +1,5 @@
 import React from 'react';
-import PageWrapper from 'components/Base/PageWrapper';
+import { PageWrapper } from 'components/Base';
 import WritePostContainer from 'containers/Home/WritePostContainer';
 import PostListContainer from 'containers/Shared/PostList/PostListContainer';
 

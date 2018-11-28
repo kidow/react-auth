@@ -102,7 +102,7 @@ exports.exists = async (req, res) => {
 }
 
 exports.logout = (req, res) => {
-  res.cookie('access_token', null, { maxAge: 0, httpOnly: true })
+  res.clearCookie('access_token')
   res.status(204)
 }
 
