@@ -12,6 +12,7 @@ Front-end :
   * react-textarea-autosize
   * react-toastify
   * react-onclickoutside
+  * react-icons
 * Redux
   * react-redux
   * redux
