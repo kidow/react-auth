@@ -1,4 +1,10 @@
 const SocketIO = require('socket.io')
+const redis = require('redis')
+
+const publisher = redis.createClient()
+const subscriber = redis.createClient()
+
+subscriber.subscribe('posts')
 
 let counter = 0
 
@@ -11,8 +17,7 @@ module.exports = (server, app) => {
   io.send(`Hello, user ${io.id}`)
 
   io.on('message', message => {
-    console.log('message :', message)
-    io.send('pong')
+    publisher.publish('posts', message)
   })
 
   io.on('close', () => {
