@@ -19,8 +19,8 @@ exports.localRegister = async (req, res) => {
   try {
     existing = await Account.findByEmailOrUsername(req.body)
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   if (existing) {
@@ -33,16 +33,16 @@ exports.localRegister = async (req, res) => {
   try {
     account = await Account.localRegister(req.body)
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   let token = null
   try {
     token = await account.generateToken()
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   res.cookie('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 })
@@ -68,8 +68,8 @@ exports.localLogin = async (req, res) => {
   try {
     account = await Account.findByEmail(email)
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   if (!account || !account.validatePassword(password)) {
@@ -81,8 +81,8 @@ exports.localLogin = async (req, res) => {
   try {
     token = await account.generateToken()
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   res.cookie('access_token', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 })
@@ -95,15 +95,15 @@ exports.exists = async (req, res) => {
   try {
     account = await (key === 'email' ? Account.findByEmail(value) : Account.findByUsername(value))
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
   res.json({ exists: account !== null })
 }
 
 exports.logout = (req, res) => {
-  res.clearCookie('access_token')
   res.status(204)
+  res.clearCookie('access_token')
 }
 
 exports.check = (req, res) => {
