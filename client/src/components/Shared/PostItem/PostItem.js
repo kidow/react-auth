@@ -35,8 +35,7 @@ const PostItem = ({image, post, onToggleLike, onCommentClick}) => {
         {content}
       </div>
       <PostFooter 
-        likesCount={likesCount} 
-        liked={liked} 
+        likesCount={likesCount}
         onToggleLike={toggleLike} 
         onCommentClick={commentClick}
         comments={comments}
