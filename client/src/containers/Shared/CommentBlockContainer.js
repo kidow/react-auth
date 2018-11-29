@@ -30,7 +30,6 @@ class CommentBlockContainer extends Component {
         text: value
       })
     }
-    console.log(post.get('_id'))
   }
   render() {
     const { status, post, logged } = this.props

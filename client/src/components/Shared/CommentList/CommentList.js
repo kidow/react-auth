@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CommentItem from '../CommentItem';
 import withRelayout from 'lib/withRelayout'
+import './CommentList.scss'
 
 class CommentList extends Component {
   state = { limit: 5 }
@@ -24,7 +25,7 @@ class CommentList extends Component {
       <div className='comment-list'>
         {commentList}
         {limit < comments.size && 
-          <div onClick={handleReadMore} className='read-more'>{comments.size - limit}개 더 보기</div>
+          <div onClick={handleReadMore} className='read-more'>{comments.size - limit > 10 ? 10 : comments.size - limit}개 더 보기</div>
         }
       </div>
     );
