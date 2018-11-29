@@ -3,7 +3,7 @@ const Post = require('../../models/post')
 const { Types: { ObjectId } } = require('mongoose')
 
 exports.comment = async (req, res) => {
-  const { user } = req.user
+  const { user } = req
   if (!user) {
     res.sendStatus(403)
     return
