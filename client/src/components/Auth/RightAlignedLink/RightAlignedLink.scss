@@ -5,8 +5,10 @@
   text-align: right;
   .styled-link {
     color: $oc-gray-6;
+    text-decoration: none;
     &:hover {
       color: $oc-gray-7;
+      text-decoration: underline;
     }
   }
 }
