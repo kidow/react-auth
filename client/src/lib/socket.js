@@ -15,10 +15,15 @@ export default (function socketHelper() {
   let _listen = null
 
   const listener = message => {
-    if(_listen) return
+    if(!_listen) return
     const data = parseJSON(message.data)
     if (!data || !data.type) return
     _store.dispatch(data)
+  }
+
+  const reconnect = () => {
+    console.log('reconnecting...')
+    setTimeout(() => connect(_uri), 30000);
   }
 
   const connect = uri => {
@@ -31,11 +36,6 @@ export default (function socketHelper() {
     }
 
     _socket.onclose = reconnect
-  }
-
-  const reconnect = () => {
-    console.log('reconnecting...')
-    setTimeout(() => connect(_uri), 30000);
   }
 
   return {

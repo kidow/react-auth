@@ -4,6 +4,7 @@ const { Types: { ObjectId } } = require('mongoose')
 
 exports.comment = async (req, res) => {
   const { user } = req.user
+  console.log(user)
   if (!user) {
     res.status(403)
     return

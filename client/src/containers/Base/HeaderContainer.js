@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import { Header, UserThumbnail, LoginButton } from 'components/Base';
+import UserMenuContainer from './UserMenuContainer'
+
+import { connect } from 'react-redux'
 import * as userActions from 'store/user'
 import * as baseActions from 'store/base'
 import { bindActionCreators } from 'redux'
-import UserMenuContainer from './UserMenuContainer'
 
 class HeaderContainer extends Component {
   handleThumbnailClick = () => {

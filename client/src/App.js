@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
 import { HomePage, AuthPage, UserPage } from './pages';
+import HeaderContainer from 'containers/Base/HeaderContainer';
+import { Route } from 'react-router-dom'
 import storage from 'lib/storage'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as userActions from 'store/user'
+
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-import HeaderContainer from 'containers/Base/HeaderContainer';
 
 class App extends Component {
 

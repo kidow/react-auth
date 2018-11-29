@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { UserHead } from 'components/User';
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as userPageActions from 'store/userPage'

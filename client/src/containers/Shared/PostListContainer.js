@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { PostList } from 'components/Shared'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as postsActions from 'store/posts'
+
 import { toast } from 'react-toastify'
 import { setRelayoutHandler } from 'lib/withRelayout'
 
@@ -38,7 +40,7 @@ class PostListContainer extends Component {
 
   handleScroll = () => {
     const { nextData } = this.props
-    if (!nextData.size) return
+    if (nextData.size === 0) return
 
     const { innerWidth } = window
     const { scrollHeight } = document.body

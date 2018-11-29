@@ -15,7 +15,7 @@ class CommentList extends Component {
     const { comments } = this.props
     const { limit } = this.state
     const { handleReadMore } = this
-    if (!comments.size) return null
+    if (comments.size === 0) return null
 
     const commentList = comments.slice(0, limit).map(comment => {
       return <CommentItem {...comment.toJS()} key={comment.get('_id')}/>

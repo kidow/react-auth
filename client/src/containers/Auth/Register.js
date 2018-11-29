@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { AuthContent, InputWithLabel, AuthButton, RightAlignedLink, AuthError } from 'components/Auth'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as authActions from 'store/auth'
+import * as userActions from 'store/user'
+
 import { isEmail, isLength, isAlphanumeric } from 'validator'
 import debounce from 'lodash/debounce'
-import * as userActions from 'store/user'
 import storage from 'lib/storage'
 
 class Register extends Component {

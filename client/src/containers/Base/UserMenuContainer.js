@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import { UserMenu, UserName, UserMenuItem } from 'components/Base'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as baseActions from 'store/base'
 import * as userActions from 'store/user'
+
 import storage from 'lib/storage'
-import { UserMenu, UserName, UserMenuItem } from 'components/Base'
 import onClickOutside from 'react-onclickoutside'
 import PropTypes from 'prop-types'
 
 class UserMenuContainer extends Component {
-  static contextType = {
+  static contextTypes = {
     router: PropTypes.object
   }
 
@@ -33,7 +35,7 @@ class UserMenuContainer extends Component {
       console.log(e)
     }
     storage.remove('loggedInfo')
-    window.location.reload()
+    window.location.href = '/'
   }
 
   render() {

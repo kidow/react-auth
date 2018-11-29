@@ -3,7 +3,7 @@ import './WritePost.scss'
 import TextArea from 'react-textarea-autosize'
 import Progress from '../Progress'
 
-const WritePost = ({onChange, onPost, value, logged}) => {
+const WritePost = ({onChange, onPost, value, logged, inputRef}) => {
   return (
     <div className='write-post'>
       <TextArea 
@@ -15,6 +15,7 @@ const WritePost = ({onChange, onPost, value, logged}) => {
         onChange={onChange}
         onPaste={e => e.preventDefault()}
         disabled={!logged}
+        inputRef={inputRef}
       />
       <Progress onPost={onPost} value={value}/>
     </div>

@@ -5,20 +5,26 @@ import * as api from 'lib/api/auth'
 
 const CHANGE_INPUT = 'auth/CHANGE_INPUT'
 const INITIALIZE_FORM = 'auth/INITIALIZE_FORM'
+
 const CHECK_EMAIL_EXISTS = 'auth/CHECK_EMAIL_EXISTS'
 const CHECK_USERNAME_EXISTS = 'auth/CHECK_USERNAME_EXISTS'
+
 const LOCAL_REGISTER = 'auth/LOCAL_REGISTER'
 const LOCAL_LOGIN = 'auth/LOCAL_LOGIN'
 const LOGOUT = 'auth/LOGOUT'
+
 const SET_ERROR = 'auth/SET_ERROR'
 
 export const changeInput = createAction(CHANGE_INPUT)
 export const initializeForm = createAction(INITIALIZE_FORM)
+
 export const checkEmailExists = createAction(CHECK_EMAIL_EXISTS, api.checkEmailExists)
 export const checkUsernameExists = createAction(CHECK_USERNAME_EXISTS, api.checkUsernameExists)
+
 export const localRegister = createAction(LOCAL_REGISTER, api.localRegister)
 export const localLogin = createAction(LOCAL_LOGIN, api.localLogin)
 export const logout = createAction(LOGOUT, api.logout)
+
 export const setError = createAction(SET_ERROR)
 
 const initialState = Map({

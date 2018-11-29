@@ -10,7 +10,7 @@ const CommentBlock = ({onChange, onKeyPress, value, comments}) => {
           value={value} 
           onChange={onChange} 
           onKeyPress={onKeyPress}
-          placeholder="댓글을 입력 후 [Enter]를 눌러 작성하세요."
+          placeholder="댓글 입력 후 [Enter]를 눌러 작성하세요."
         />
         <CommentList comments={comments}/>
       </div>

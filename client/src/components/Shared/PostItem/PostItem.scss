@@ -4,7 +4,7 @@
 
 .post-item {
   width: calc((100% - 32px) / 3);
-  @include media("<desktop") { width: calc(100% - 32px) / 3 }
+  @include media("<desktop") { width: calc(100% - 16px) / 2 }
   @include media("<tablet") { width: 100% }
   margin-bottom: 1rem;
   background: white;
@@ -29,7 +29,7 @@
       margin-left: 0.3rem;
       font-size: 0.9rem;
       text-decoration: none;
-      color: $oc-gray-7;
+      color: inherit;
       &:hover {
         color: $oc-gray-9;
       }

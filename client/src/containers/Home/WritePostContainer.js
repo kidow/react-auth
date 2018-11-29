@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { WritePost } from 'components/Home'
+
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as homeActions from 'store/home'
 import * as userActions from 'store/user'
-import * as PostsActions from 'store/posts'
+import * as postsActions from 'store/posts'
+
 import { toast } from 'react-toastify'
 
 class WritePostContainer extends Component {
@@ -27,6 +29,11 @@ class WritePostContainer extends Component {
   }
 
   handlePost = async () => {
+    this.input.blur()
+    setTimeout(() => {
+      this.input.focus()
+    }, 100);
+    
     const { HomeActions, value } = this.props
     const message = message => (<div style={{fontSize: '1.1rem'}}>{message}</div>)
 
@@ -57,6 +64,7 @@ class WritePostContainer extends Component {
         onPost={handlePost}
         value={value}
         logged={logged}
+        inputRef={ref=>this.input=ref}
       />
     )
   }
@@ -71,6 +79,6 @@ export default connect(
   dispatch => ({
     HomeActions: bindActionCreators(homeActions, dispatch),
     UserActions: bindActionCreators(userActions, dispatch),
-    PostsActions: bindActionCreators(PostsActions, dispatch)
+    PostsActions: bindActionCreators(postsActions, dispatch)
   })
 )(WritePostContainer)

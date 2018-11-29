@@ -5,7 +5,6 @@ import { GoHeart } from 'react-icons/go'
 import { IoMdChatbubbles } from 'react-icons/io'
 
 const PostFooter = ({liked, likesCount = 0, comments = [], onToggleLike, onCommentClick}) => {
-  console.log(comments)
   return (
     <div className='post-footer'>
       <div className='likes'>

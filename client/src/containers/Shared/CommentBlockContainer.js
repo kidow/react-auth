@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { CommentBlock } from 'components/Shared';
+
 import { connect } from 'react-redux'
-import * as postsActions from 'store/posts'
 import { bindActionCreators } from 'redux'
+import * as postsActions from 'store/posts'
 
 class CommentBlockContainer extends Component {
   handleChange = e => {
@@ -29,6 +30,7 @@ class CommentBlockContainer extends Component {
         text: value
       })
     }
+    console.log(post.get('_id'))
   }
   render() {
     const { status, post } = this.props

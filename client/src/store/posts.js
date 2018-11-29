@@ -70,7 +70,7 @@ export default handleActions({
       return state.updateIn(
         ['data', index],
         post => post.set('liked', true)
-                    .update('likedCount', count => count + 1)
+                    .update('likedCount', count => count++)
       )
     },
     onSuccess: (state, action) => {
@@ -85,8 +85,8 @@ export default handleActions({
       const index = state.get('data').findIndex(post => post.get('_id') === action.meta);
       return state.updateIn(
         ['data', index],
-        post => post.set('liked', true)
-                    .update('likedCount', count => count - 1)
+        post => post.set('liked', false)
+                    .update('likedCount', count => count--)
       )
     },
     onSuccess: (state, action) => {
@@ -97,6 +97,7 @@ export default handleActions({
   }),
   [TOGGLE_COMMENT]: (state, action) => {
     const comment = state.getIn(['comments', action.payload])
+    console.log(comment)
     if (comment) {
       return state.updateIn(['comments', action.payload], comment => comment.set('visible', !comment.get('visible')))
     }
@@ -112,7 +113,7 @@ export default handleActions({
   ...pender({
     type: COMMENT,
     onPending: (state, action) => {
-      return state.setIn(['comments', action.meta])
+      return state.setIn(['comments', action.meta, 'value'], '')
     },
     onSuccess: (state, action) => {
       const index = state.get('data').findIndex(post => post.get('_id') === action.meta)

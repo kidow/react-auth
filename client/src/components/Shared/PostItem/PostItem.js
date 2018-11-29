@@ -1,7 +1,9 @@
 import React from 'react';
+
 import TimeAgo from 'react-timeago'
 import koreanStrings from 'react-timeago/lib/language-strings/ko'
 import buildFormatter from 'react-timeago/lib/formatters/buildFormatter'
+
 import { PostFooter } from 'components/Shared'
 import './PostItem.scss'
 import CommentBlockContainer from 'containers/Shared/CommentBlockContainer';
