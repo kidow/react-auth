@@ -4,7 +4,7 @@ import './UserHead.scss'
 const UserHead = ({
   image = "/static/images/default_thumbnail.png",
   username = "username",
-  thoughtCount = 150
+  thoughtCount = 0
 }) => {
   return (
     <div className='user-head'>

@@ -100,6 +100,7 @@ exports.list = async (req, res) => {
   posts = posts.map(checkLiked)
 
   res.json({ 
-    next, data: posts
+    next, 
+    data: posts
   })
 }

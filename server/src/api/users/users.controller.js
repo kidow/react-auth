@@ -16,9 +16,8 @@ exports.getProfile = async (req, res) => {
     return
   }
 
-  const { profile, throughCount } = account
-
-  res.json({profile, throughCount})
+  const { profile, thoughtCount } = account
+  res.json({profile, thoughtCount})
 }
 
 exports.getThumbnail = async (req, res) => {

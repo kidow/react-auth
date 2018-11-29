@@ -97,7 +97,6 @@ export default handleActions({
   }),
   [TOGGLE_COMMENT]: (state, action) => {
     const comment = state.getIn(['comments', action.payload])
-    console.log(comment)
     if (comment) {
       return state.updateIn(['comments', action.payload], comment => comment.set('visible', !comment.get('visible')))
     }

@@ -26,13 +26,14 @@ class UserHeadContainer extends Component {
   }
   
   render() {
-    const { username, thumbnail, throughCount, fetched } = this.props
+    const { username, thumbnail, thoughtCount, fetched } = this.props
+    console.log('thoughtCount :', thoughtCount)
     if (!fetched) return null
     return (
       <UserHead 
         username={username}
         thumbnail={thumbnail}
-        throughCount={throughCount}
+        thoughtCount={thoughtCount}
       />
     );
   }
@@ -41,7 +42,7 @@ class UserHeadContainer extends Component {
 export default connect(
   state => ({
     thumbnail: state.userPage.getIn(['info', 'profile', 'thumbnail']),
-    throughCount: state.userPage.getIn(['info', 'thoughtCount']),
+    thoughtCount: state.userPage.getIn(['info', 'thoughtCount']),
     fetched: state.pender.success['userPage/GET_USER_INFO']
   }),
   dispatch => ({
