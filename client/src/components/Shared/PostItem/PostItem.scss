@@ -29,7 +29,10 @@
       margin-left: 0.3rem;
       font-size: 0.9rem;
       text-decoration: none;
-      color: black;
+      color: $oc-gray-7;
+      &:hover {
+        color: $oc-gray-9;
+      }
     }
     .count {
       color: $oc-gray-6;

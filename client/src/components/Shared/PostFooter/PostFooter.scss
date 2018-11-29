@@ -19,12 +19,18 @@
   .likes {
     display: flex;
     align-items: center;
-    svg {
+    .svg {
       &:hover {
         color: $oc-gray-6;
       }
       &:active {
         color: $oc-red-8;
+      }
+    }
+    .active {
+      color: $oc-pink-6;
+      &:hover {
+        color: $oc-pink-5;
       }
     }
   }

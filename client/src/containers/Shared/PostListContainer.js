@@ -54,7 +54,7 @@ class PostListContainer extends Component {
     
     const message = message => (<div style={{fontSize: '1.1rem'}}>{message}</div>)
     if (!logged) {
-      return toast(message('로그인 후 이용하실 수 있습니다.'), { type: 'error' })
+      return toast(message(' 로그인 후 이용하실 수 있습니다.'), { type: 'error' })
     }
     if (liked) {
       PostsActions.dislikePost(postId)
