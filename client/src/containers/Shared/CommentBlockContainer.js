@@ -33,7 +33,7 @@ class CommentBlockContainer extends Component {
     console.log(post.get('_id'))
   }
   render() {
-    const { status, post } = this.props
+    const { status, post, logged } = this.props
     const { visible, value } = status ? status.toJS() : {}
     const { handleChange, handleKeyPress } = this
 
@@ -45,6 +45,7 @@ class CommentBlockContainer extends Component {
         onChange={handleChange}
         onKeyPress={handleKeyPress}
         comments={post.get('comments')}
+        logged={logged}
       />
     );
   }
@@ -52,7 +53,8 @@ class CommentBlockContainer extends Component {
 
 export default connect(
   (state, ownProps) => ({
-    status: state.posts.getIn(['comments', ownProps.post.get('_id')])
+    status: state.posts.getIn(['comments', ownProps.post.get('_id')]),
+    logged: state.user.get('logged')
   }),
   dispatch => ({
     PostsActions: bindActionCreators(postsActions, dispatch)
