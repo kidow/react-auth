@@ -1,6 +1,6 @@
 const express = require('express')
-
 const posts = express.Router()
+
 const postsCtrl = require('./posts.controller')
 const likesCtrl = require('./likes.controller')
 const commentCtrl = require('./comments.controller')

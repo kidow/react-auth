@@ -24,7 +24,7 @@ exports.comment = async (req, res) => {
   const { postId } = req.params
 
   if (!ObjectId.isValid(postId)) {
-    res.status(40)
+    res.status(400)
     return
   }
 
@@ -42,7 +42,7 @@ exports.comment = async (req, res) => {
   }
 
   try {
-    await Post.writeComment({username, text})
+    await post.writeComment({username, text})
   } catch (e) {
     console.log(e)
     res.status(500)

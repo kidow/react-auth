@@ -45,7 +45,7 @@ Account.statics.findByEmailOrUsername = function({username, email}) {
   }).exec()
 }
 
-Account.statics.localRegister = function ({ username, email, password }) {
+Account.statics.localRegister = function({username, email, password}) {
   const account = new this({
     profile: { username },
     email,
@@ -55,7 +55,7 @@ Account.statics.localRegister = function ({ username, email, password }) {
   return account.save();
 };
 
-Account.methods.validatePassword = function (password) {
+Account.methods.validatePassword = function(password) {
   const hashed = hash(password)
   return this.password === hashed
 };
@@ -69,7 +69,7 @@ Account.methods.generateToken = function() {
   return generateToken(payload, 'account')
 }
 
-Account.methods.increaseThoughtCount = function () {
+Account.methods.increaseThoughtCount = function() {
   this.thoughtCount++;
   return this.save();
 };

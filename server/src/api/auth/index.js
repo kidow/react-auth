@@ -1,6 +1,6 @@
 const express = require('express')
-
 const auth = express.Router()
+
 const authCtrl = require('./auth.controller')
 
 auth.post('/register/local', authCtrl.localRegister);

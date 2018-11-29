@@ -30,7 +30,19 @@ Post.statics.list = function({cursor, username, self}) {
     cursor ? { _id: { $lt: cursor } } : {},
     username ? { username } : {}
   )
-  return this.find(query).sort({ _id: -1 }).limit(20).exec()
+
+  const projection = self ? {
+    count: 1,
+    username: 1,
+    content: 1,
+    comments: 1,
+    likes: {
+      '$elemMatch': { '$eq': self }
+    },
+    likesCount: 1,
+    createdAt: 1
+  } : {}
+  return this.find(query, projection).sort({ _id: -1 }).limit(20).exec()
 }
 
 Post.statics.like = function({_id, username}) {

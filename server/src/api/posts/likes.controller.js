@@ -39,7 +39,7 @@ exports.like = async (req, res) => {
   try {
     post = await Post.like({
       _id: postId,
-      username
+      username: username
     })
   } catch (e) {
     console.log(e)
@@ -91,7 +91,7 @@ exports.dislike = async (req, res) => {
   try {
     post = await Post.dislike({
       _id: postId,
-      username
+      username: username
     })
   } catch (e) {
     console.log(e)

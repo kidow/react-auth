@@ -7,8 +7,8 @@ exports.getProfile = async (req, res) => {
   try {
     account = await Account.findByUsername(username)
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   if (!account) {
@@ -16,10 +16,9 @@ exports.getProfile = async (req, res) => {
     return
   }
 
-  res.json({
-    profile: account.profile,
-    throughCount: account.throughCount
-  })
+  const { profile, throughCount } = account
+
+  res.json({profile, throughCount})
 }
 
 exports.getThumbnail = async (req, res) => {
@@ -29,8 +28,8 @@ exports.getThumbnail = async (req, res) => {
   try {
     account = await Account.findByUsername(username)
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   if (!account) {

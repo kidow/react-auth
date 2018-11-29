@@ -83,8 +83,8 @@ exports.list = async (req, res) => {
   try {
     posts = await Post.list({cursor, username, self})
   } catch (e) {
-    res.status(500)
     console.log(e)
+    res.status(500)
   }
 
   const next = posts.length === 20 ? `/api/posts/?${username ? `username=${username}&` : ''}cursor=${posts[19]._id}` : null
@@ -99,5 +99,7 @@ exports.list = async (req, res) => {
 
   posts = posts.map(checkLiked)
 
-  res.json({ next, data: posts })
+  res.json({ 
+    next, data: posts
+  })
 }
