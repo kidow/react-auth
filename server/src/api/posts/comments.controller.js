@@ -4,9 +4,8 @@ const { Types: { ObjectId } } = require('mongoose')
 
 exports.comment = async (req, res) => {
   const { user } = req.user
-  console.log(user)
   if (!user) {
-    res.status(403)
+    res.sendStatus(403)
     return
   }
 
@@ -16,7 +15,7 @@ exports.comment = async (req, res) => {
 
   const result = Joi.validate(req.body, schema)
   if (result.error) {
-    res.status(400)
+    res.sendStatus(400)
     return
   }
 
@@ -25,7 +24,7 @@ exports.comment = async (req, res) => {
   const { postId } = req.params
 
   if (!ObjectId.isValid(postId)) {
-    res.status(400)
+    res.sendStatus(400)
     return
   }
 
@@ -33,19 +32,19 @@ exports.comment = async (req, res) => {
   try {
     post = await Post.findById(postId)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
   if (!post) {
-    res.status(404)
+    res.sendStatus(404)
     return
   }
 
   try {
     await post.writeComment({username, text})
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 

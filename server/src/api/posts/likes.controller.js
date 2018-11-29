@@ -3,7 +3,7 @@ const Post = require('../../models/post')
 exports.like = async (req, res) => {
   const { user } = req
   if (!user) {
-    res.status(403)
+    res.sendStatus(403)
     return
   }
 
@@ -19,12 +19,12 @@ exports.like = async (req, res) => {
       }
     })
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
   if (!post) {
-    res.status(404)
+    res.sendStatus(404)
     return
   }
 
@@ -42,7 +42,7 @@ exports.like = async (req, res) => {
       username: username
     })
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
@@ -55,7 +55,7 @@ exports.like = async (req, res) => {
 exports.dislike = async (req, res) => {
   const { user } = req
   if (!user) {
-    res.status(403)
+    res.sendStatus(403)
     return
   }
 
@@ -71,12 +71,12 @@ exports.dislike = async (req, res) => {
       }
     })
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
   if (!post) {
-    res.status(404)
+    res.sendStatus(404)
     return
   }
 
@@ -94,7 +94,7 @@ exports.dislike = async (req, res) => {
       username: username
     })
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 

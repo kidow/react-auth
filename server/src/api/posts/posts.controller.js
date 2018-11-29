@@ -20,11 +20,11 @@ exports.write = async (req, res) => {
     account = await Account.findById(user._id).exec()
   } catch (e) {
     res.status(500)
-    console.log(e)
+    console.error(e)
   }
 
   if (!account) {
-    res.status(403)
+    res.sendStatus(403)
     return
   }
 
@@ -37,7 +37,7 @@ exports.write = async (req, res) => {
   const result = Joi.validate(req.body, schema)
 
   if (result.error) {
-    res.status(400)
+    res.sendStatus(400)
     return
   }
 
@@ -53,7 +53,7 @@ exports.write = async (req, res) => {
     await account.increaseThoughtCount()
   } catch (e) {
     res.status(500)
-    console.log(e)
+    console.error(e)
   }
 
   post = post.toJSON()
@@ -72,7 +72,7 @@ exports.list = async (req, res) => {
   const { cursor, username } = req.query
 
   if (cursor && !ObjectId.isValid(cursor)) {
-    res.status(400)
+    res.sendStatus(400)
     return
   }
 
@@ -83,7 +83,7 @@ exports.list = async (req, res) => {
   try {
     posts = await Post.list({cursor, username, self})
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 

@@ -7,12 +7,12 @@ exports.getProfile = async (req, res) => {
   try {
     account = await Account.findByUsername(username)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
   if (!account) {
-    res.status(404)
+    res.sendStatus(404)
     return
   }
 
@@ -28,12 +28,12 @@ exports.getThumbnail = async (req, res) => {
   try {
     account = await Account.findByUsername(username)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
   if (!account) {
-    res.status(404)
+    res.sendStatus(404)
     return
   }
 

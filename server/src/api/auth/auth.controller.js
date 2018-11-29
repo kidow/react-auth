@@ -1,7 +1,7 @@
 const Joi = require('joi')
 const Account = require('../../models/account')
 
-exports.localRegister = async (req, res) => {
+exports.localRegister = async (req, res, next) => {
   const schema = Joi.object().keys({
     username: Joi.string().alphanum().min(4).max(15).required(),
     email: Joi.string().email().required(),
@@ -11,7 +11,7 @@ exports.localRegister = async (req, res) => {
   const result = Joi.validate(req.body, schema)
 
   if (result.error) {
-    res.status(400)
+    res.sendStatus(400)
     return
   }
 
@@ -19,7 +19,7 @@ exports.localRegister = async (req, res) => {
   try {
     existing = await Account.findByEmailOrUsername(req.body)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
@@ -33,7 +33,7 @@ exports.localRegister = async (req, res) => {
   try {
     account = await Account.localRegister(req.body)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
@@ -41,7 +41,7 @@ exports.localRegister = async (req, res) => {
   try {
     token = await account.generateToken()
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
@@ -58,7 +58,7 @@ exports.localLogin = async (req, res) => {
   const result = Joi.validate(req.body, schema)
 
   if (result.error) {
-    res.status(400)
+    res.sendStatus(400)
     return
   }
 
@@ -68,12 +68,12 @@ exports.localLogin = async (req, res) => {
   try {
     account = await Account.findByEmail(email)
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
   if (!account || !account.validatePassword(password)) {
-    res.status(403)
+    res.sendStatus(403)
     return
   }
   
@@ -81,7 +81,7 @@ exports.localLogin = async (req, res) => {
   try {
     token = await account.generateToken()
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
 
@@ -95,21 +95,21 @@ exports.exists = async (req, res) => {
   try {
     account = await (key === 'email' ? Account.findByEmail(value) : Account.findByUsername(value))
   } catch (e) {
-    console.log(e)
+    console.error(e)
     res.status(500)
   }
   res.json({ exists: account !== null })
 }
 
 exports.logout = (req, res) => {
-  res.status(204)
   res.clearCookie('access_token')
+  res.sendStatus(204)
 }
 
 exports.check = (req, res) => {
   const { user } = req
   if (!user) {
-    res.status(403)
+    res.sendStatus(403)
     return
   }
   res.json(user.profile)

@@ -8,7 +8,7 @@ import * as baseActions from 'store/base'
 import { bindActionCreators } from 'redux'
 
 class HeaderContainer extends Component {
-  handleThumbnailClick = () => {
+  handleThumbnailClick = (e) => {
     const { BaseActions } = this.props
     BaseActions.setUserMenuVisibility(true)
   }
