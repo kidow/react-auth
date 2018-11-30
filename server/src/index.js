@@ -6,6 +6,7 @@ const { jwtMiddleware } = require('./lib/token')
 const morgan = require('morgan')
 const port = process.env.PORT || 4000
 const webSocket = require('./ws')
+const history = require('connect-history-api-fallback')
 
 const apiRouter = require('./api')
 
@@ -29,6 +30,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(jwtMiddleware)
+app.use(history())
 
 app.use('/api', apiRouter)
 
