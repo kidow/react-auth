@@ -38,12 +38,13 @@
         text-align: center;
         a {
           text-decoration: none;
-          color: $oc-gray-3;
+          color: $oc-gray-4;
           @media (max-width: 400px) {
             display: none;
           }
           &:hover {
-            color: $oc-gray-6;
+            color: $oc-gray-7;
+            text-decoration: underline;
           }
         }
       }
