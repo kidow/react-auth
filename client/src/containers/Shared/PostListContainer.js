@@ -7,6 +7,7 @@ import * as postsActions from 'store/posts'
 
 import { toast } from 'react-toastify'
 import { setRelayoutHandler } from 'lib/withRelayout'
+import Loading from 'components/Loading';
 
 class PostListContainer extends Component {
   prev = null
@@ -92,15 +93,21 @@ class PostListContainer extends Component {
   }
   
   render() {
-    const { data } = this.props
+    const { data, loading } = this.props
     const { handleToggleLike, handleCommentClick } = this
     return (
-      <PostList 
-        posts={data}
-        onToggleLike={handleToggleLike}
-        onCommentClick={handleCommentClick}
-        masonryRef={ref=>this.masonry=ref}
-      />
+      <>
+        {loading ? (
+          <Loading/>
+        ) : (
+          <PostList
+            posts={data}
+            onToggleLike={handleToggleLike}
+            onCommentClick={handleCommentClick}
+            masonryRef={ref => this.masonry = ref}
+          />
+        )}
+      </>
     )
   }
 }
@@ -110,7 +117,8 @@ export default connect(
     next: state.posts.get('next'),
     data: state.posts.get('data'),
     nextData: state.posts.get('nextData'),
-    logged: state.user.get('logged')
+    logged: state.user.get('logged'),
+    loading: state.pender.pending['posts/LOAD_POST']
   }),
   dispatch => ({
     PostsActions: bindActionCreators(postsActions, dispatch)
