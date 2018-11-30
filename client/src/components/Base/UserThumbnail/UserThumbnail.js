@@ -1,12 +1,17 @@
 import React from 'react';
+import Avatar from 'react-avatar'
 import './UserThumbnail.scss'
 
-const UserThumbnail = ({thumbnail, onClick}) => {
+const UserThumbnail = ({thumbnail, onClick, name}) => {
   return (
-    <div 
-      style={{backgroundImage: `url(${thumbnail})`}} 
+    <Avatar
+      src={`${thumbnail}`}
       className='user-thumbnail' 
       onClick={onClick}
+      name={name}
+      size='40'
+      round
+      textSizeRatio={name[0] === 'i' ? 0 : 3}
     />
   );
 };

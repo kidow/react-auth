@@ -14,7 +14,7 @@ class HeaderContainer extends Component {
   }
 
   render() {
-    const { logged, visible, thumbnail } = this.props
+    const { logged, visible, thumbnail, username } = this.props
     const { handleThumbnailClick } = this
     if (!visible) return null
     return (
@@ -23,6 +23,7 @@ class HeaderContainer extends Component {
           <UserThumbnail 
             thumbnail={thumbnail} 
             onClick={handleThumbnailClick}
+            name={username}
           />
         ) : (
           <LoginButton />
@@ -37,7 +38,8 @@ export default connect(
   state => ({
     logged: state.user.get('logged'),
     visible: state.base.getIn(['header', 'visible']),
-    thumbnail: state.user.getIn(['loggedInfo', 'thumbnail'])
+    thumbnail: state.user.getIn(['loggedInfo', 'thumbnail']),
+    username: state.user.getIn(['loggedInfo', 'username'])
   }),
   dispatch => ({
     UserActions: bindActionCreators(userActions, dispatch),

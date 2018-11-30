@@ -9,6 +9,7 @@ import './PostItem.scss'
 import CommentBlockContainer from 'containers/Shared/CommentBlockContainer';
 import { Link } from 'react-router-dom'
 import scuize from 'lib/scuize'
+import Avatar from 'react-avatar'
 
 const formatter = buildFormatter(koreanStrings)
 
@@ -22,10 +23,12 @@ const PostItem = ({image, post, onToggleLike, onCommentClick}) => {
   return (
     <div className='post-item'>
       <div className='head'>
-        <div 
-          style={{backgroundImage: `url(${image})`}}
+        <Avatar
+          src={`${image}`}
           className='user-thumbnail'
           image={`/api/users/${username}/thumbnail`}
+          name={username}
+          size='32'
         />
         <Link to={`/@${username}`} className='username'>{username}</Link>
         <div className='count'>#{count}번째 생각</div>

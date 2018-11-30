@@ -13,6 +13,7 @@ Front-end :
   * react-toastify
   * react-onclickoutside
   * react-icons
+  * react-avatar
 * Redux
   * react-redux
   * redux
