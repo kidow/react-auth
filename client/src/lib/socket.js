@@ -23,7 +23,7 @@ export default (function socketHelper() {
 
   const reconnect = () => {
     console.log('reconnecting...')
-    setTimeout(() => connect(_uri), 30000);
+    setTimeout(() => connect(_uri), 60000);
   }
 
   const connect = uri => {

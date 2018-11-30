@@ -8,7 +8,9 @@ const Header = ({children}) => {
       <div className='white-background'>
         <div className='header-contents'>
           <Link className='logo' to='/'>KIDOW</Link>
-          <div className='spacer'/>
+          <div className='spacer'>
+            <a href='https://github.com/kidow/react-auth' target='_blank' rel='noopener noreferrer'>https://github.com/kidow/react-auth</a>
+          </div>
           {children}
         </div>
       </div>

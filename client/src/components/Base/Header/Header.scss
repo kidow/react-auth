@@ -35,6 +35,17 @@
       }
       .spacer {
         flex-grow: 1;
+        text-align: center;
+        a {
+          text-decoration: none;
+          color: $oc-gray-3;
+          @media (max-width: 400px) {
+            display: none;
+          }
+          &:hover {
+            color: $oc-gray-6;
+          }
+        }
       }
     }
   }
