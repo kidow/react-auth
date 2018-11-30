@@ -46,7 +46,7 @@ class UserMenuContainer extends Component {
       <UserMenu>
         <UserName username={username}/>
         <UserMenuItem onClick={handleOpenMyHeurm}>나의 흐름</UserMenuItem>
-        <UserMenuItem>설정</UserMenuItem>
+        <UserMenuItem>설정 (미구현)</UserMenuItem>
         <UserMenuItem onClick={handleLogout}>로그아웃</UserMenuItem>
       </UserMenu>
     )
