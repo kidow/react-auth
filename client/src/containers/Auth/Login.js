@@ -71,7 +71,8 @@ class Login extends Component {
     return (
       <AuthContent title='로그인'>
         <InputWithLabel 
-          label='이메일' 
+          label='이메일'
+          type='email'
           name='email' 
           placeholder='이메일'
           value={email}

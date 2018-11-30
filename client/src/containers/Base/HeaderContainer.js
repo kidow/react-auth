@@ -8,23 +8,26 @@ import * as baseActions from 'store/base'
 import { bindActionCreators } from 'redux'
 
 class HeaderContainer extends Component {
-  handleThumbnailClick = (e) => {
+  handleThumbnailClick = () => {
     const { BaseActions } = this.props
     BaseActions.setUserMenuVisibility(true)
   }
 
   render() {
-    const { user, visible } = this.props
+    const { logged, visible, thumbnail } = this.props
     const { handleThumbnailClick } = this
     if (!visible) return null
     return (
       <Header>
-        {user.get('logged') ? (
-          <UserThumbnail thumbnail={user.getIn(['loggedInfo', 'thumbnail'])} onClick={handleThumbnailClick}/>
+        {logged ? (
+          <UserThumbnail 
+            thumbnail={thumbnail} 
+            onClick={handleThumbnailClick}
+          />
         ) : (
           <LoginButton />
         )}
-        <UserMenuContainer/>
+        <UserMenuContainer />
       </Header>
     );
   }
@@ -32,8 +35,9 @@ class HeaderContainer extends Component {
 
 export default connect(
   state => ({
-    user: state.user,
-    visible: state.base.getIn(['header', 'visible'])
+    logged: state.user.get('logged'),
+    visible: state.base.getIn(['header', 'visible']),
+    thumbnail: state.user.getIn(['loggedInfo', 'thumbnail'])
   }),
   dispatch => ({
     UserActions: bindActionCreators(userActions, dispatch),

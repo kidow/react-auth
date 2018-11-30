@@ -145,7 +145,8 @@ class Register extends Component {
     return (
       <AuthContent title='회원가입'>
         <InputWithLabel 
-          label='이메일' 
+          label='이메일'
+          type='email'
           name='email' 
           placeholder='이메일'
           value={email}
