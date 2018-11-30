@@ -27,7 +27,6 @@ class UserHeadContainer extends Component {
   
   render() {
     const { username, thumbnail, thoughtCount, fetched } = this.props
-    console.log('thoughtCount :', thoughtCount)
     if (!fetched) return null
     return (
       <UserHead 
