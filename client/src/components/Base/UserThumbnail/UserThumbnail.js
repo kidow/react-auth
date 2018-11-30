@@ -11,7 +11,7 @@ const UserThumbnail = ({thumbnail, onClick, name}) => {
       name={name}
       size='40'
       round
-      textSizeRatio={name[0] === 'i' ? 0 : 3}
+      textSizeRatio={name[0] === ('i' || 'I') ? 0 : 3}
     />
   );
 };
