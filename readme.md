@@ -1,5 +1,7 @@
 # Kidow - React Auth
 
+https://kidow-server.herokuapp.com
+
 Stack
 ===
 

@@ -15,7 +15,7 @@ class UserMenuContainer extends Component {
     router: PropTypes.object
   }
 
-  handleClickOutside = () => {
+  handleClickOutside = (e) => {
     const { BaseActions } = this.props
     BaseActions.setUserMenuVisibility(false)
   }
